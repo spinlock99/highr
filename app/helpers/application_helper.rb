@@ -1,5 +1,10 @@
 module ApplicationHelper
 
+  #Define a "logo" helper function
+  def logo
+    logo = image_tag("logo.png", :alt => "HighR", :class => "round")
+  end
+
   #Return a title on a per-page basis.
   def title
     base_title = "HighR"

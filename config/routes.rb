@@ -1,4 +1,6 @@
 Highr::Application.routes.draw do
+  get "users/login"
+
   get "users/new"
 
   #set the root of the application to /pages/home
@@ -10,7 +12,8 @@ Highr::Application.routes.draw do
   match '/help', :to => 'pages#help'
 
   #RESTful pages
-  match 'signup', :to => 'users#new'
+  match '/signup', :to => 'users#new'
+  match '/login', :to => 'users#login'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.
