@@ -1,0 +1,18 @@
+<header>
+  <% logo = image_tag("logo.png", :alt => "HighR", :class => "round") %>
+  <%= link_to logo, root_path %>
+  <nav class="round">
+    <ul>
+      <li><%=
+	     # link_to is a ruby function so you can write it 
+	     # this way:
+	     link_to("Home",root_path) 
+	     %></li>
+      <li><%=
+	     # but, the "Rails" way is to write link_to
+	     # like this:
+	     link_to "Help", help_path 
+	     %></li>
+    </ul>
+  </nav>
+</header>
