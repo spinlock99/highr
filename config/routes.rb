@@ -1,7 +1,7 @@
 Highr::Application.routes.draw do
-  get "users/login"
+#  get "users/login"
 
-  get "users/new"
+#  get "users/new"
 
   #set the root of the application to /pages/home
   root :to => 'pages#home'
@@ -12,6 +12,10 @@ Highr::Application.routes.draw do
   match '/help', :to => 'pages#help'
 
   #RESTful pages
+  resources :users #enables GET request on /users to work 
+                   #(i.e. /users/1 will return the user record 
+                   #in the database with :id = 1)
+  
   match '/signup', :to => 'users#new'
   match '/login', :to => 'users#login'
 
