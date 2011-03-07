@@ -12,6 +12,11 @@ module ApplicationHelper
                           :class => "round")
   end
   
+  #Define a "navigation_button" helper function
+  def navigation_button image
+    navigation_button = image_tag(image, :size => "195x59")
+  end
+
   #Return a title on a per-page basis.
   def title
     base_title = "HighR"

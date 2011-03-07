@@ -4,11 +4,41 @@
  * ADD - 3/3/11
 */
 .container {
-    width: 710px;
+    width: 1024px;
+}
+
+#navigation_bar {
+    float: left;
+    padding: 1em;
+    width: 195px;
+    border: 1px solid #000000;
+}
+
+#gradient {
+    float: left;
+    padding: 1em;
+    border: 1px solid #000000;
+}
+
+#login_box {
+    float: left;
+    padding: 1em;
+    width: 350px;
+}
+
+#sign_in_box {
+    float: left;
+    padding: 1em;
+    width: 350px;
+}
+
+div.field, div.actions {
+    margin-bottom: 10px;
+    text-align: right;
 }
 
 body {
-    background: #cff;
+    background: #fff;
 }
 
 header {
