@@ -6,6 +6,9 @@ class UsersController < ApplicationController
     #define @user as the user record with :id = the value which was passed in 
     #on the browser (i.e. /users/1 will return the user with :id = 1)
     @user = User.find(params[:id])
+
+    #a title for the user show page
+    @title = @user.name
   end
 
   def new
