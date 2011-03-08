@@ -1,7 +1,6 @@
 class PagesController < ApplicationController
   def home
     @title = "Home"
-    @homepage = true
     @user = User.new
   end
 

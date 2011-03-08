@@ -18,6 +18,11 @@ describe PagesController do
       response.should have_selector("title",
                                     :content => @base_title + " | Home")
     end
+
+    it "should not have a header" do
+      get 'home'
+      response.should_not have_selector("header")
+    end
   end
 
   describe "GET 'contact'" do
