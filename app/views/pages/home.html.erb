@@ -20,34 +20,13 @@
 	<%= f.label :password %>
 	<%= f.password_field :password %>
       </div>
-      <% end %>
       <div class="actions">
 	<%= image_tag("login.gif") %>
       </div>
+      <% end %>
     </div>
     <div id="sign_in_box">
-      <h1>Sign Up</h1>
-      <%= form_for(@user) do |f| %>
-      <div class="field">
-	<%= f.label :name %>
-	<%= f.text_field :name %>
-      </div>
-      <div class="field">
-	<%= f.label :email %>
-	<%= f.text_field :email %><br />
-      </div>
-      <div class="field">
-	<%= f.label :password %>
-	<%= f.password_field :password %><br />
-      </div>
-      <div class="field">
-	<%= f.label :password_confirmation, "Confirmation" %>
-	<%= f.password_field :password_confirmation %>
-      </div>
-      <div class="actions">
-	<%= image_tag("sign_up.gif") %>
-      </div>
-      <% end %>
+      <%= render('layouts/sign_up_form') %>
     </div>
   </div>
 </div>
