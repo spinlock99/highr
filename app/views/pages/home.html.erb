@@ -11,21 +11,10 @@
     <!--  <%= image_tag("Inner_Gradient.gif", :size => "14x246") %> -->
     <div id="login_box">
       <h1>Login</h1>
-      <%= form_for(@user) do |f| %>
-      <div class="field">
-	<%= f.label :email %>
-	<%= f.text_field :name %>
-      </div>
-      <div class="field">
-	<%= f.label :password %>
-	<%= f.password_field :password %>
-      </div>
-      <div class="actions">
-	<%= image_tag("login.gif") %>
-      </div>
-      <% end %>
+      <%= render('shared/sign_in_form') %>
     </div>
     <div id="sign_up_box">
+      <h1>Sign up</h1>
       <%= render('shared/sign_up_form') %>
     </div>
   </div>
