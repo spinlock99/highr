@@ -23,6 +23,26 @@ describe PagesController do
       get 'home'
       response.should_not have_selector("header")
     end
+
+    it "should have a name field" do
+      get :home
+      response.should have_selector("input[name='user[name]'][type='text']")
+    end
+
+    it "should have an email field" do
+      get :home
+      response.should have_selector("input[name='user[email]'][type='text']")
+    end
+
+    it "should have a password field" do
+      get :home
+      response.should have_selector("input[name='user[password]'][type='password']")
+    end
+
+    it "should have a password_confirmation field" do
+      get :home
+      response.should have_selector("input[name='user[password_confirmation]'][type='password']")
+    end
   end
 
   describe "GET 'contact'" do

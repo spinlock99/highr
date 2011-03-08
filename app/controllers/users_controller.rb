@@ -20,13 +20,20 @@ class UsersController < ApplicationController
     @title = "Sign in"
   end
 
+  #create a new user. The C in CRUD and the POST in html.
   def create
+    #instantiate a @user variable - what kind of variable? there's a name -
+    #with all of the appropriate fields from the user model.
     @user = User.new(params[:user])
     if @user.save
       flash[:success] = "Welcome to HighR!"
       redirect_to @user
     else
       @title = "Sign up"
+      #blank out the password fields
+      @user.password = ""
+      @user.password_confirmation = ""
+      #now show the new user page with errors
       render 'new'
     end
   end
