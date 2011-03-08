@@ -1,4 +1,6 @@
 Highr::Application.routes.draw do
+  get "sessions/new"
+
 #  get "users/login"
 
 #  get "users/new"
@@ -15,9 +17,15 @@ Highr::Application.routes.draw do
   resources :users #enables GET request on /users to work 
                    #(i.e. /users/1 will return the user record 
                    #in the database with :id = 1)
-  
+
+  #restrict sessions controler to only handle new, create and destroy
+  resources :sessions, :only => [:new, :create, :destroy] 
+
+  #named routes
   match '/signup', :to => 'users#new'
-  match '/login', :to => 'users#login'
+  match '/signin', :to => 'sessions#new'
+  match '/signout', :to => 'sessions#destroy'
+#  match '/login', :to => 'users#login'
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

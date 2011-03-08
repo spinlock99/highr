@@ -13,11 +13,11 @@ describe "Users" do
           #visit the home page
           visit root_path
           #fill in bad info in the fields
-          within "#new_user" do
+          within "#sign_up" do
             fill_in "user[name]", :with => ""
-            fill_in /user.*email.*/, :with => ""
+            fill_in "user[email]", :with => ""
             fill_in "user[password]", :with => ""
-            fill_in "user[confirmation]", :with => ""
+            fill_in "user[password_confirmation]", :with => ""
             #push the button
             click_button
           end
@@ -52,11 +52,11 @@ describe "Users" do
           #go to the home page 
           visit root_path
           #fill in good data in the form
-          within '#new_user' do
+          within '#sign_up' do
             fill_in "user[name]", :with => "Example User"
             fill_in "user[email]", :with => "user@example.com"
             fill_in "user[password]", :with => "foobar"
-            fill_in "user[confirmation]", :with => "foobar"
+            fill_in "user[password_confirmation]", :with => "foobar"
             #push the button
             click_button
           end

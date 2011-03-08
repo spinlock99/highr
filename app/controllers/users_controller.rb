@@ -16,10 +16,6 @@ class UsersController < ApplicationController
     @user = User.new
   end
 
-  def login
-    @title = "Sign in"
-  end
-
   #create a new user. The C in CRUD and the POST in html.
   def create
     #instantiate a @user variable - what kind of variable? there's a name -

@@ -72,18 +72,6 @@ describe UsersController do
     end
   end
 
-  describe "Get 'signin'" do
-    it "should be successful" do
-      get 'login'
-      response.should be_success
-    end
-
-    it "should have the right title" do
-      get 'login'
-      response.should have_selector("title", :content => "Sign in")
-    end
-  end
-
   describe "POST 'create'" do
 
     describe "failure" do
