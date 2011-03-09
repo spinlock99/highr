@@ -22,6 +22,7 @@ class UsersController < ApplicationController
     #with all of the appropriate fields from the user model.
     @user = User.new(params[:user])
     if @user.save
+      sign_in @user
       flash[:success] = "Welcome to HighR!"
       redirect_to @user
     else

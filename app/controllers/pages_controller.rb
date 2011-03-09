@@ -1,7 +1,11 @@
 class PagesController < ApplicationController
   def home
-    @title = "Home"
-    @user = User.new
+    if signed_in?
+      redirect_to current_user
+    else
+      @title = "Home"
+      @user = User.new
+    end
   end
 
   def contact
