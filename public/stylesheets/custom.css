@@ -8,13 +8,15 @@
 }
 
 #navigation_bar {
+    height: 218;
     float: left;
-    padding: 1em;
-    width: 195px;
-    border: 1px solid #000000;
+/*    padding: 1em;
+    width: 195px;*/
+    border: 1px solid #ddd;
 }
 
 #gradient {
+    height: 218px;
     float: left;
     padding: 1em;
     background:
@@ -37,7 +39,7 @@
 }
 
 div.field, div.actions {
-    margin-bottom: 10px;
+    margin-bottom: 2px;
     text-align: right;
 }
 
