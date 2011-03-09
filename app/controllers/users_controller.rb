@@ -1,11 +1,15 @@
 class UsersController < ApplicationController
   # tell the controller to run the authenticate method before 
   # executing the edit or update functions.
-  before_filter :authenticate, :only => [:edit, :update, :index]
+  before_filter :authenticate, :only => [:edit, :update, :index, :destroy]
   
   # tell the controller to run the correct_user method before
   # executing the edit or update functions.
   before_filter :correct_user, :only => [:edit, :update]
+
+  # tell the controller to run the :admin_user method before
+  # executing the :destroy function
+  before_filter :admin_user, :only => :destroy
 
   #controller corresponding to app/views/users/show.html.erb
   #GET requests are automatically handled by the show action in rails
@@ -75,6 +79,13 @@ class UsersController < ApplicationController
     end
   end
 
+  # remove the specified user from the system
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User destroyed."
+    redirect_to users_path
+  end
+  
   # begin private methods
   private
 
@@ -88,5 +99,10 @@ class UsersController < ApplicationController
   def correct_user
     @user = User.find(params[:id])
     redirect_to(root_path) unless current_user?(@user)
+  end
+
+  # redirect to the home page unless the current user is an admin
+  def admin_user
+    redirect_to(root_path) unless current_user.admin?
   end
 end

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110307054423
+# Schema version: 20110309193320
 #
 # Table name: users
 #
@@ -10,6 +10,7 @@
 #  updated_at         :datetime
 #  encrypted_password :string(255)
 #  salt               :string(255)
+#  admin              :boolean
 #
 
 #User model is a subclass of ActiveRecord::Base 
