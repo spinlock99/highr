@@ -1,4 +1,11 @@
 class UsersController < ApplicationController
+  # tell the controller to run the authenticate method before 
+  # executing the edit or update functions.
+  before_filter :authenticate, :only => [:edit, :update, :index]
+  
+  # tell the controller to run the correct_user method before
+  # executing the edit or update functions.
+  before_filter :correct_user, :only => [:edit, :update]
 
   #controller corresponding to app/views/users/show.html.erb
   #GET requests are automatically handled by the show action in rails
@@ -33,5 +40,49 @@ class UsersController < ApplicationController
       #now show the new user page with errors
       render 'new'
     end
+  end
+
+  # allow the signed in user to edit their information
+  def edit
+    @title = "Edit user"
+  end
+
+  # show all users to a signed in user
+  def index
+    @title = "All users"
+    @users = User.all
+  end
+
+  # show a user page to another signed in user
+  def show
+    @user = User.find(params[:id])
+    @title = @user.name
+  end
+
+  # update the signed in user
+  def update
+    @user = User.find(params[:id])
+    if @user.update_attributes(params[:user])
+      flash[:success] = "Profile updated."
+      redirect_to @user
+    else
+      @title = "Edit user"
+      render 'edit'
+    end
+  end
+
+  # begin private methods
+  private
+
+  # authenticate the user by ensuring that it is signed in
+  def authenticate
+    deny_access unless signed_in?
+  end
+
+  # make sure that the current_user has the same id as
+  # the user that we are trying to edit.
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_path) unless current_user?(@user)
   end
 end

@@ -238,3 +238,17 @@ td.sidebar {
     font-size: 12px;
     list-style: square;
 }
+
+/* 
+ * Unordered list for users class
+ * Used to list all of the users on the users/index page
+ */
+ul.users {
+    margin-top: 1em;
+}
+/* 
+ * List Item for users class
+*/
+.users li {
+    list-style: none;
+}
