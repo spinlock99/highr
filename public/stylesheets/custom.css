@@ -17,7 +17,11 @@
 #gradient {
     float: left;
     padding: 1em;
-    border: 1px solid #000000;
+    background:
+    url(/images/Inner_Gradient.gif) 0 0 repeat-x;
+    border:1px solid #ddd;
+    -webkit-border-radius:5px;
+    -moz-border-radius:5px;
 }
 
 #login_box {
