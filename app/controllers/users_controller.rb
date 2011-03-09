@@ -50,7 +50,11 @@ class UsersController < ApplicationController
   # show all users to a signed in user
   def index
     @title = "All users"
-    @users = User.all
+    # create a Collection of @users with the paginate method from the 
+    # will_paginate gem. The :page pramater is automatically generated
+    # by will_paginate.
+    @users = User.paginate(:page => params[:page],
+                           :order => "updated_at DESC")
   end
 
   # show a user page to another signed in user

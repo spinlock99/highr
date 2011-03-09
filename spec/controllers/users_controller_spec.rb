@@ -26,6 +26,12 @@ describe UsersController do
                         :email => "another@example.net")
         # put all three test users into @user as an array
         @users = [@user, second, third]
+        # add 30 more users with FactoryGirl.
+        30.times do
+          # Factory.next(:email) is defined in spec/factories.rb
+          @users << Factory(:user, :email => Factory.next(:email))
+        end
+        @users.reverse!
       end # before(:each)
 
       it "should be successful" do
@@ -40,9 +46,19 @@ describe UsersController do
 
       it "should have an element for each user" do
         get :index
-        @users.each do |user|
-          response.should have_selector("img", :alt => user.name)
+        @users[0..10].each do |user|
+          response.should have_selector("li", :content => user.name)
         end
+      end
+
+      it "should paginate users" do
+        get :index
+        response.should have_selector("div.pagination")
+        response.should have_selector("span.disabled", :content => "Previous")
+        response.should have_selector("a", :href => "/users?page=2",
+                                      :content => "2")
+        response.should have_selector("a", :href => "/users?page=2",
+                                      :content => "Next")
       end
     end # describe "for signed-in users"
   end # describe "GET 'index'"
