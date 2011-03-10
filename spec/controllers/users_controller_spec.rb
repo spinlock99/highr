@@ -5,6 +5,40 @@ describe UsersController do
   # (i.e. response.should have_selector ...
   render_views
 
+  describe "GET 'new'" do
+
+    it "should be successful" do
+      get 'new'
+      response.should be_success
+    end
+    
+    it "should have the right title" do
+      get 'new'
+      response.should have_selector("title", :content => "Sign up")
+    end
+
+    it "should have a name field" do
+      get :new
+      response.should have_selector("input[name='user[name]'][type='text']")
+    end
+
+    it "should have an email field" do
+      get :new
+      response.should have_selector("input[name='user[email]'][type='text']")
+    end
+    
+    it "should have a password field" do
+      get :new
+      response.should 
+        have_selector("input[name='user[password]'][type='password']")
+    end
+
+    it "should have a password confirmation field" do
+      get :new
+      response.should have_selector("input[name='user[password_confirmation]'][type='password']")
+    end
+  end # describe "GET 'new'"
+
   describe "GET 'index'" do
     
     describe "for non-signed-in users" do
@@ -48,6 +82,7 @@ describe UsersController do
         get :index
         @users[0..10].each do |user|
           response.should have_selector("li", :content => user.name)
+          response.should_not have_selector("a", :content => "delete" )
         end
       end
 
@@ -64,7 +99,6 @@ describe UsersController do
   end # describe "GET 'index'"
 
   describe "GET 'show'" do
-
 
     before (:each) do
       @user = Factory(:user)
@@ -96,40 +130,6 @@ describe UsersController do
     end
   end
   
-  describe "GET 'new'" do
-
-    it "should be successful" do
-      get 'new'
-      response.should be_success
-    end
-    
-    it "should have the right title" do
-      get 'new'
-      response.should have_selector("title", :content => "Sign up")
-    end
-
-    it "should have a name field" do
-      get :new
-      response.should have_selector("input[name='user[name]'][type='text']")
-    end
-
-    it "should have an email field" do
-      get :new
-      response.should have_selector("input[name='user[email]'][type='text']")
-    end
-    
-    it "should have a password field" do
-      get :new
-      response.should 
-        have_selector("input[name='user[password]'][type='password']")
-    end
-
-    it "should have a password confirmation field" do
-      get :new
-      response.should have_selector("input[name='user[password_confirmation]'][type='password']")
-    end
-  end
-
   describe "POST 'create'" do
 
     describe "failure" do
@@ -337,6 +337,11 @@ describe UsersController do
       it "should redirect to the users page" do
         delete :destroy, :id => @user
         response.should redirect_to(users_path)
+      end
+
+      it "should show the delete tag on the users page" do
+        get :index
+        response.should have_selector("a", :content => "delete")
       end
     end
   end # describe "DELETE 'destroy'"

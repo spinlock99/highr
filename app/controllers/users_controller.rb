@@ -1,7 +1,8 @@
 class UsersController < ApplicationController
   # tell the controller to run the authenticate method before 
   # executing the edit or update functions.
-  before_filter :authenticate, :only => [:edit, :update, :index, :destroy]
+  before_filter :authenticate, :only => [:edit, :update, :index, 
+                                         :destroy]
   
   # tell the controller to run the correct_user method before
   # executing the edit or update functions.
@@ -23,12 +24,20 @@ class UsersController < ApplicationController
   end
 
   def new
+    # redirect a signed in user to their home page
+    if current_user
+      redirect_to root_path
+    end
     @title = "Sign up"
     @user = User.new
   end
 
   #create a new user. The C in CRUD and the POST in html.
   def create
+    # redirect a signed in user to their home page
+    if current_user
+      redirect_to root_path
+    end
     #instantiate a @user variable - what kind of variable? there's a name -
     #with all of the appropriate fields from the user model.
     @user = User.new(params[:user])

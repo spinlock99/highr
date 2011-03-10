@@ -4,38 +4,55 @@
  * ADD - 3/3/11
 */
 .container {
-    width: 1024px;
+/*    
+ *    width: 1024px;
+ *
+ *   margin: 1em;
+ */
+    padding: 1em;
 }
 
 #navigation_bar {
     height: 218;
     float: left;
-/*    padding: 1em;
-    width: 195px;*/
+    padding: 1em;
+/*    width: 195px;*/
     border: 1px solid #ddd;
+    box-shadow: 0 0 2em #888;
+    -moz-box-shadow: 0 0 2em #888;
+    -webkit-box-shadow: 0 0 2em #888;
 }
 
+/*
+ * gradient needs to be an ID and not a CLASS to show up correctly in Chrome.
+ */
 #gradient {
     height: 218px;
     float: left;
-    padding: 1em;
-    background:
-    url(/images/Inner_Gradient.gif) 0 0 repeat-x;
-    border:1px solid #ddd;
-    -webkit-border-radius:5px;
+/*    padding: 1em;*/
+    background: url(/images/Inner_Gradient.gif) 0 0 repeat-x;
+    border: 1px solid #ddd;
+    margin: 2em;
+/*    -webkit-border-radius:5px;
     -moz-border-radius:5px;
+*/
+    vertical-align: middle;
+    box-shadow: 0 0 2em #888;
+    -moz-box-shadow: 0 0 2em #888;
+    -webkit-box-shadow: 0 0 2em #888;
 }
 
-#login_box {
+.login_box {
     float: left;
     padding: 1em;
-    width: 350px;
+/*    width: 350px; */
+/*    border: 1px solid #000; */
 }
 
-#sign_up_box {
+.sign_up_box {
     float: left;
     padding: 1em;
-    width: 350px;
+/*    width: 350px; */
 }
 
 div.field, div.actions {
@@ -251,4 +268,48 @@ ul.users {
 */
 .users li {
     list-style: none;
+}
+
+/* nice shadowed style */
+
+.empty_state_box p {
+    margin-left: 24px;
+    margin-top: 3px;
+    margin-bottom: 20px;
+}
+.empty_state_box a {
+    text-decoration: none;
+}
+.empty_state_box h1 {
+    margin-top: -15px;
+}
+
+.empty_state_box h2 {
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.empty_state_box {
+    width: 480px;
+    margin-left: -258px;
+    border-radius: 10px;
+    -webkit-border-radius: 10px;
+    -moz-border-radius: 10px;
+    -o-border-radius: 10px;
+    -khtml-border-radius: 10px;
+    
+    box-shadow: 0 0 2em #888;
+    -moz-box-shadow: 0 0 2em #888;
+    -webkit-box-shadow: 0 0 2em #888;
+    padding: 35px;
+    margin-top: 35px;
+    z-index: 2004;
+    position: absolute;
+    background-color: #fffeff;
+    left: 50%;
+    
+/*
+ * IE support
+ *   behavior: url(/site_media/static/css/PIE.htc);
+ */
 }
