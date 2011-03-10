@@ -13,9 +13,22 @@
 }
 
 #navigation_bar {
+/*    height: 100; */
+    float: left;
+    border: 1px solid #ddd;
+    padding: 5px;
+/*    width: 195px;
+    box-shadow: 0 0 2em #888;
+    -moz-box-shadow: 0 0 2em #888;
+    -webkit-box-shadow: 0 0 2em #888;
+*/
+}
+#home_page_shadow {
     height: 218;
     float: left;
-    padding: 1em;
+    padding: 10px;
+    margin-left: 20px;
+    margin-top: 15px;
 /*    width: 195px;*/
     border: 1px solid #ddd;
     box-shadow: 0 0 2em #888;
@@ -31,15 +44,16 @@
     float: left;
 /*    padding: 1em;*/
     background: url(/images/Inner_Gradient.gif) 0 0 repeat-x;
-    border: 1px solid #ddd;
+/*    border: 1px solid #ddd;
     margin: 2em;
-/*    -webkit-border-radius:5px;
+    -webkit-border-radius:5px;
     -moz-border-radius:5px;
 */
     vertical-align: middle;
-    box-shadow: 0 0 2em #888;
+/*    box-shadow: 0 0 2em #888;
     -moz-box-shadow: 0 0 2em #888;
     -webkit-box-shadow: 0 0 2em #888;
+*/
 }
 
 .login_box {
@@ -56,7 +70,7 @@
 }
 
 div.field, div.actions {
-    margin-bottom: 2px;
+    margin-bottom: 0px;
     text-align: right;
 }
 
@@ -204,7 +218,10 @@ td.sidebar {
     width: 30%;
     padding: 1em;
     vertical-align: top;
-    background: #ffc;
+/*    background: #ffc; */
+    box-shadow: 0 0 2em #888;
+    -moz-box-shadow: 0 0 2em #888;
+    -webkit-box-shadow: 0 0 2em #888;
 }
 
 .profile img.gravatar {

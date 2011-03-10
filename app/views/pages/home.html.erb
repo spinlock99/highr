@@ -1,5 +1,4 @@
 <%= link_to home_logo, root_path %>
-
 <div class="container">
   <div class="round" id="navigation_bar">
     <div><%= link_to navigation_button("people.gif"), root_path %></div>
@@ -7,8 +6,8 @@
     <div><%= link_to navigation_button("teams.gif"), root_path %></div>
     <div><%= link_to navigation_button("jobs.gif"), root_path %></div>
   </div>
+  <div class="round" id="home_page_shadow">
   <div class="round" id="gradient">
-    <!--  <%= image_tag("Inner_Gradient.gif", :size => "14x246") %> -->
     <div class="login_box">
       <h1>Login</h1>
       <%= render('shared/sign_in_form') %>
@@ -18,4 +17,5 @@
       <%= render('shared/sign_up_form') %>
     </div>
   </div>
+</div>
 </div>
