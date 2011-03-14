@@ -21,10 +21,10 @@ class User < ActiveRecord::Base
   attr_accessor :password
 
   #attributes accessible to outside users
-  attr_accessible :name, :email, :password, :password_confirmation
+  attr_accessible :username, :email, :password, :password_confirmation
 
   #validate that the name attribute is present in the user record
-  validates :name, :presence => true,
+  validates :username, :presence => true,
                    #validate the name is less than 51 chars
                    :length => {:maximum => 50}
 
@@ -53,7 +53,7 @@ class User < ActiveRecord::Base
   def has_password?(submitted_password)
     #compare encrypted_password with the encrypted version of 
     #submitted_password.
-    encrypted_password == encrypt(submitted_password)
+    crypted_password == encrypt(submitted_password)
   end
 
   def self.authenticate (email, submitted_password)
@@ -67,7 +67,7 @@ class User < ActiveRecord::Base
     # use a ternary opperator to return user if 
     # authentication with salt is successful and
     # nil otherwise.
-    (user && user.salt == cookie_salt) ? user : nil
+    (user && user.password_salt == cookie_salt) ? user : nil
   end
 
   #begin private functions
@@ -77,13 +77,13 @@ class User < ActiveRecord::Base
   def encrypt_password
     #self refers to the object so that we don't create 
     #a variable "encrypted_password"
-    self.salt = make_salt if new_record?
-    self.encrypted_password = encrypt(password)
+    self.password_salt = make_salt if new_record?
+    self.crypted_password = encrypt(password)
   end
 
   #function to encrypt a string
   def encrypt(string)
-    secure_hash("#{salt}--#{string}")
+    secure_hash("#{password_salt}--#{string}")
   end
 
   def make_salt

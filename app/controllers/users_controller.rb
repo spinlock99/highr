@@ -20,7 +20,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
 
     #a title for the user show page
-    @title = @user.name
+    @title = @user.username
   end
 
   def new
@@ -73,7 +73,7 @@ class UsersController < ApplicationController
   # show a user page to another signed in user
   def show
     @user = User.find(params[:id])
-    @title = @user.name
+    @title = @user.username
   end
 
   # update the signed in user

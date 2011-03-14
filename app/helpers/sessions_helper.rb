@@ -6,7 +6,7 @@ module SessionsHelper
     # User model that we use instead of the user.id to 
     # avoid spoofing. Sign the :remember_token with the user.salt
     # to harden against malicious attack.
-    cookies.permanent.signed[:remember_token] = [user.id, user.salt]
+    cookies.permanent.signed[:remember_token] = [user.id, user.password_salt]
     self.current_user = user
   end
 
