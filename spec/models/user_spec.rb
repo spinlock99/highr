@@ -5,7 +5,7 @@ describe User do
   #create a test user before each spec
   before(:each) do
     @attr = { 
-      :name => "Example User", 
+      :username => "Example User", 
       :email => "user@example.com",
       :password => "foobar",
       :password_confirmation => "foobar"
@@ -18,7 +18,7 @@ describe User do
 
   it "should require a name" do
     #use the Hash method "merge" to create an invalid user name
-    no_name_user = User.new(@attr.merge(:name => ""))
+    no_name_user = User.new(@attr.merge(:username => ""))
     no_name_user.should_not be_valid
   end
 
@@ -29,7 +29,7 @@ describe User do
 
   it "should reject names that are too long" do
     long_name = "a" * 51
-    long_name_user = User.new(@attr.merge(:name => long_name))
+    long_name_user = User.new(@attr.merge(:username => long_name))
     long_name_user.should_not be_valid
   end
 

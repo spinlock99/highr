@@ -54,16 +54,18 @@ describe UsersController do
       before(:each) do
         # set up three test users
         @user = test_sign_in(Factory(:user))
-        second = Factory(:user, :name => "Bob", 
+        second = Factory(:user, :username => "Bob", 
                          :email => "another@example.com")
-        third = Factory(:user, :name => "Ben", 
+        third = Factory(:user, :username => "Ben", 
                         :email => "another@example.net")
         # put all three test users into @user as an array
         @users = [@user, second, third]
         # add 30 more users with FactoryGirl.
         30.times do
           # Factory.next(:email) is defined in spec/factories.rb
-          @users << Factory(:user, :email => Factory.next(:email))
+          @users << Factory(:user,
+                            :username => Factory.next(:username),
+                            :email => Factory.next(:email))
         end
         @users.reverse!
       end # before(:each)
