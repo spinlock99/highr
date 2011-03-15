@@ -2,18 +2,22 @@ class UserSessionsController < ApplicationController
 
   # GET /user_sessions/new
   def new
+    @title = "Sign in"
     @user_session = UserSession.new
 
-    render @user_session
+    render 'new'
   end
 
   # POST /user_sessions
   def create
     @user_session = UserSession.new(params[:user_session])
+
     if @user_session.save
-      redirect_to :users, :notice => 'Login Successful'
+      redirect_back_or @user_session.user
     else
-      render :action => "new"
+      flash.now[:error] = "Invalid username/password combination."
+      @title = "Sign in"
+      render 'new'
     end
   end
 

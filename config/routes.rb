@@ -1,9 +1,4 @@
 Highr::Application.routes.draw do
-  get "user_sessions/new"
-
-#  get "users/login"
-
-#  get "users/new"
 
   #set the root of the application to /pages/home
   root :to => 'pages#home'
@@ -27,9 +22,9 @@ Highr::Application.routes.draw do
   match '/signout', :to => 'user_sessions#destroy'
 
   # Authlogic routes
-  resources :user_sessions
-  match 'login' => 'user_sessions#new', :as => :login
-  match 'logout' => 'user_sessions#destroy', :as => :logout
+#  resources :user_sessions
+#  match 'login' => 'user_sessions#new', :as => :login
+#  match 'logout' => 'user_sessions#destroy', :as => :logout
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

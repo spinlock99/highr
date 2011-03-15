@@ -30,15 +30,15 @@ module SessionsHelper
 
   # end Authlogic hacks
 
-  def sign_in(user)
+#  def sign_in(user)
     # create a cookie that will expire in 20 years.
     # :remember_token is a secure token associated with the 
     # User model that we use instead of the user.id to 
     # avoid spoofing. Sign the :remember_token with the user.salt
     # to harden against malicious attack.
-    cookies.permanent.signed[:remember_token] = [user.id, user.password_salt]
-    self.current_user = user
-  end
+#    cookies.permanent.signed[:remember_token] = [user.id, user.password_salt]
+#    self.current_user = user
+#  end
 
   # define helper function to handle the assignment of 
   # the variable 'user' to instance variable '@current_user'

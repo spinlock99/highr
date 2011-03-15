@@ -14,7 +14,7 @@ describe "Users" do
           visit root_path
           #fill in bad info in the fields
           within "#sign_up" do
-            fill_in "user[name]", :with => ""
+            fill_in "user[username]", :with => ""
             fill_in "user[email]", :with => ""
             fill_in "user[password]", :with => ""
             fill_in "user[password_confirmation]", :with => ""
@@ -32,7 +32,7 @@ describe "Users" do
           #visit the signup page
           visit signup_path
           #fill in bad info in the fields
-          fill_in "Name", :with => ""
+          fill_in :username, :with => ""
           fill_in "Email", :with => ""
           fill_in "Password", :with => ""
           fill_in "Confirmation", :with => ""
@@ -53,7 +53,7 @@ describe "Users" do
           visit root_path
           #fill in good data in the form
           within '#sign_up' do
-            fill_in "user[name]", :with => "Example User"
+            fill_in "user[username]", :with => "Example User"
             fill_in "user[email]", :with => "user@example.com"
             fill_in "user[password]", :with => "foobar"
             fill_in "user[password_confirmation]", :with => "foobar"
@@ -74,7 +74,7 @@ describe "Users" do
           #go to the signup page
           visit signup_path
           #fill in good data in the form
-          fill_in "Name", :with => "Example User"
+          fill_in :username, :with => "Example User"
           fill_in "Email", :with => "user@example.com"
           fill_in "Password", :with => "foobar"
           fill_in "Confirmation", :with => "foobar"
@@ -96,7 +96,7 @@ describe "Users" do
     describe "failure" do
       it "should not sign a user in" do
         visit signin_path
-        fill_in :email, :with => ""
+        fill_in :username, :with => ""
         fill_in :password, :with => ""
         click_button
         response.should have_selector("div.flash.error", :content => "Invalid")

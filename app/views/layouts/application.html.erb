@@ -10,7 +10,7 @@
     <!-- Authlogic stuff -->
     <div id="nav">
       <%= link_to "Register", new_user_path%> |
-      <%= link_to "Login", :login%>
+      <%= link_to "Login", :signin %>
     </div><!-- End Authlogic Stuff -->
     <div class="container">
       <%= render('layouts/header') unless params[:action] == 'home' %>

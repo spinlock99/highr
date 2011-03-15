@@ -3,13 +3,14 @@ class UsersController < ApplicationController
   before_filter :require_user, :only => [:show, :edit, :update]
   
   def new
+    @title = "Sign up"
     @user = User.new
   end
   
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:notice] = "Account registered!"
+      flash[:success] = "Welcome"
       redirect_back_or @user
     else
       render :action => :new
