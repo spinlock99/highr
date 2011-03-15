@@ -36,7 +36,12 @@ class UsersController < ApplicationController
   end
 
   def index
-    @title = "All users"
-    @users = User.paginate(:page => params[:page])
+    if signed_in?
+      @title = "All users"
+      @users = User.paginate(:page => params[:page])
+    else
+      
+      redirect_to signin_path
+    end
   end
 end
