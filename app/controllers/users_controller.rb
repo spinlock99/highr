@@ -1,6 +1,6 @@
 class UsersController < ApplicationController
   before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => [:show, :edit, :update]
+  before_filter :require_user, :only => [:show, :edit, :update, :index]
   
   def new
     @title = "Sign up"
@@ -36,12 +36,7 @@ class UsersController < ApplicationController
   end
 
   def index
-    if signed_in?
-      @title = "All users"
-      @users = User.paginate(:page => params[:page])
-    else
-      
-      redirect_to signin_path
-    end
+    @title = "All users"
+    @users = User.paginate(:page => params[:page])
   end
 end

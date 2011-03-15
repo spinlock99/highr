@@ -12,8 +12,8 @@ module SessionsHelper
   def require_user
     unless current_user
       store_location
-      flash[:notice] = "You must be logged in to access this page"
-      redirect_to new_user_session_url
+      flash[:notice] = "You must sign in to access this page"
+      redirect_to signin_path
       return false
     end
   end
