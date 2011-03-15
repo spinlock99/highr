@@ -1,4 +1,34 @@
 module SessionsHelper
+  # Authlogic hacks
+  def require_no_user
+    if current_user
+      store_location
+      flash[:notice] = "You must be logged out to access this page"
+      redirect_to current_user
+      return false
+    end
+  end
+
+  def require_user
+    unless current_user
+      store_location
+      flash[:notice] = "You must be logged in to access this page"
+      redirect_to new_user_session_url
+      return false
+    end
+  end
+  
+  def current_user_session
+    return @current_user_session if defined?(@current_user_session)
+    @current_user_session = UserSession.find
+  end
+  
+  def current_user
+    return @current_user if defined?(@current_user)
+    @current_user = current_user_session && current_user_session.user
+  end
+
+  # end Authlogic hacks
 
   def sign_in(user)
     # create a cookie that will expire in 20 years.
@@ -14,25 +44,25 @@ module SessionsHelper
   # the variable 'user' to instance variable '@current_user'
   # This looks like pointers in C and I'm sure there's something
   # deeper going on here than is apparent at first blush.
-  def current_user=(user)
-    @current_user = user
-  end
-
-  def current_user
+#  def current_user=(user)
+#    @current_user = user
+#  end
+#
+#  def current_user
     # we need this so that @current_user persists across pages.
     # the 'or equals' operator sets 
     # @current_user = @currenet_user || user_from_remember_token
     # where the or operator is evaluated left to right and returns
     # the first true value (i.e. @current_user if it is defined or 
     # user_from_remember_token if @current_user == nil).
-    @current_user ||= user_from_remember_token
-  end
+#    @current_user ||= user_from_remember_token
+#  end
 
   # method to test if the given user is the current_user 
   # (i.e. the user that is signed in).
-  def current_user?(user)
-    user == current_user
-  end
+#  def current_user?(user)
+#    user == current_user
+#  end
 
   # method to deny access to a user
   def deny_access

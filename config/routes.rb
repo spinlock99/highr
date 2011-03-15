@@ -1,5 +1,5 @@
 Highr::Application.routes.draw do
-  get "sessions/new"
+  get "user_sessions/new"
 
 #  get "users/login"
 
@@ -19,12 +19,12 @@ Highr::Application.routes.draw do
                    #in the database with :id = 1)
 
   #restrict sessions controler to only handle new, create and destroy
-  resources :sessions, :only => [:new, :create, :destroy] 
+  resources :user_sessions, :only => [:new, :create, :destroy] 
 
   #named routes
   match '/signup', :to => 'users#new'
-  match '/signin', :to => 'sessions#new'
-  match '/signout', :to => 'sessions#destroy'
+  match '/signin', :to => 'user_sessions#new'
+  match '/signout', :to => 'user_sessions#destroy'
 
   # Authlogic routes
   resources :user_sessions
