@@ -11,12 +11,6 @@ module UserSessionsHelper
 
   def require_user
     deny_access unless signed_in?
-#    unless current_user
-#      store_location
-#      flash[:notice] = "You must sign in to access this page"
-#      redirect_to signin_path
-#      return false
-#    end
   end
   
   def current_user_session
@@ -28,6 +22,14 @@ module UserSessionsHelper
     return @current_user if defined?(@current_user)
     @current_user = current_user_session && current_user_session.user
   end
+
+  # make sure that the current_user has the same id as
+  # the user that we are trying to edit.
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_path) unless current_user?(@user)
+  end
+
 
   # end Authlogic hacks
 

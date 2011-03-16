@@ -32,7 +32,7 @@ class UsersController < ApplicationController
     @user = User.new(params[:user])
     if @user.save
       flash[:success] = "Welcome to highr"
-      redirect_back_or @user
+      redirect_to @user
     else
       @title = "Sign up"
       render :action => :new
@@ -41,6 +41,7 @@ class UsersController < ApplicationController
   
   def show
     @user = @current_user
+    @title = @user.username
   end
 
   def edit
@@ -62,13 +63,6 @@ class UsersController < ApplicationController
   def index
     @title = "All users"
     @users = User.paginate(:page => params[:page])
-  end
-
-  # make sure that the current_user has the same id as
-  # the user that we are trying to edit.
-  def correct_user
-    @user = User.find(params[:id])
-    redirect_to(root_path) unless current_user?(@user)
   end
 
   # remove the specified user from the system
