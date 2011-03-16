@@ -1,13 +1,34 @@
 class UsersController < ApplicationController
+  # tell the controller to run the require_no_user method before
+  # executing the new or create methods
   before_filter :require_no_user, :only => [:new, :create]
-  before_filter :require_user, :only => [:show, :edit, :update, :index]
   
+  # tell the controller to run the :require_user method before
+  # the show, and index functions
+  before_filter :require_user, :only => [:edit, :update, :index, 
+                                         :show, :destroy]
+  
+  # make sure we have the correct user before allowing an edit or update
+  before_filter :correct_user, :only => [:edit, :update]
+
+  # restrict destroy to admins only
+  before_filter :admin_user, :only => :destroy
+
   def new
+    # redirect a signed in user to their home page
+    if current_user
+      redirect_to root_path
+    end
     @title = "Sign up"
     @user = User.new
   end
   
+  # create a new user. The C in CRUD and the POST in html.
   def create
+    # redirect a signed in user to their home page
+    if current_user
+      redirect_to root_path
+    end
     @user = User.new(params[:user])
     if @user.save
       flash[:success] = "Welcome to highr"
@@ -24,7 +45,7 @@ class UsersController < ApplicationController
 
   def edit
     @title = "Edit user"
-    @user = @current_user
+#    @user = @current_user
   end
   
   def update
@@ -42,4 +63,27 @@ class UsersController < ApplicationController
     @title = "All users"
     @users = User.paginate(:page => params[:page])
   end
+
+  # make sure that the current_user has the same id as
+  # the user that we are trying to edit.
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_path) unless current_user?(@user)
+  end
+
+  # remove the specified user from the system
+  def destroy
+    User.find(params[:id]).destroy
+    flash[:success] = "User destroyed."
+    redirect_to users_path
+  end
+
+  # begin private methods
+  private
+  
+  # redirect to the home page unless the current user is an admin
+  def admin_user
+    redirect_to(root_path) unless current_user.admin?
+  end
+
 end

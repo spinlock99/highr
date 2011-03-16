@@ -4,5 +4,5 @@ class ApplicationController < ActionController::Base
   
   # make the authentication methods in the 
   # SessionsHelper available in contollers
-  include SessionsHelper
+  include UserSessionsHelper
 end

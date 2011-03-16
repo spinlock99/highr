@@ -1,4 +1,4 @@
-module SessionsHelper
+module UserSessionsHelper
   # Authlogic hacks
   def require_no_user
     if current_user
@@ -10,12 +10,13 @@ module SessionsHelper
   end
 
   def require_user
-    unless current_user
-      store_location
-      flash[:notice] = "You must sign in to access this page"
-      redirect_to signin_path
-      return false
-    end
+    deny_access unless signed_in?
+#    unless current_user
+#      store_location
+#      flash[:notice] = "You must sign in to access this page"
+#      redirect_to signin_path
+#      return false
+#    end
   end
   
   def current_user_session
@@ -44,9 +45,9 @@ module SessionsHelper
   # the variable 'user' to instance variable '@current_user'
   # This looks like pointers in C and I'm sure there's something
   # deeper going on here than is apparent at first blush.
-#  def current_user=(user)
-#    @current_user = user
-#  end
+  def current_user=(user)
+    @current_user = user
+  end
 #
 #  def current_user
     # we need this so that @current_user persists across pages.
@@ -60,9 +61,9 @@ module SessionsHelper
 
   # method to test if the given user is the current_user 
   # (i.e. the user that is signed in).
-#  def current_user?(user)
-#    user == current_user
-#  end
+  def current_user?(user)
+    user == current_user
+  end
 
   # method to deny access to a user
   def deny_access
