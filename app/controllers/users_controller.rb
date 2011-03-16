@@ -10,9 +10,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(params[:user])
     if @user.save
-      flash[:success] = "Welcome"
+      flash[:success] = "Welcome to highr"
       redirect_back_or @user
     else
+      @title = "Sign up"
       render :action => :new
     end
   end
@@ -22,15 +23,17 @@ class UsersController < ApplicationController
   end
 
   def edit
+    @title = "Edit user"
     @user = @current_user
   end
   
   def update
     @user = @current_user # makes our views "cleaner" and more consistent
     if @user.update_attributes(params[:user])
-      flash[:notice] = "Account updated!"
-      redirect_to account_url
+      flash[:success] = "Account updated!"
+      redirect_to @user
     else
+      @title = "Edit user"
       render :action => :edit
     end
   end

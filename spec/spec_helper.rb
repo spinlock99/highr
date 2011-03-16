@@ -2,6 +2,14 @@
 ENV["RAILS_ENV"] ||= 'test'
 require File.expand_path("../../config/environment", __FILE__)
 require 'rspec/rails'
+# require factory_girl - not sure if this is necessary but it came from 
+# the authlogic/rspec example at:
+#   https://github.com/trevmex/authlogic_rails3_example/blob/master/spec/spec_helper.rb
+require 'factory_girl'
+# Needed to for integration testing with authlogic
+require 'authlogic/test_case'
+include Authlogic::TestCase
+
 
 # Requires supporting ruby files with custom matchers and macros, etc,
 # in spec/support/ and its subdirectories.

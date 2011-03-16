@@ -17,5 +17,13 @@
 #User model is a subclass of ActiveRecord::Base 
 #and inherits all of it's methods.
 class User < ActiveRecord::Base
-  acts_as_authentic
+  acts_as_authentic do |c|
+  
+    c.merge_validates_length_of_password_field_options :minimum => 6 
+    c.merge_validates_length_of_password_field_options :maximum => 40 
+    
+  end
+  validates :username, :presence => true,
+                       :length => { :maximum => 50}
+
 end
