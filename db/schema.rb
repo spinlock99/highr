@@ -23,7 +23,7 @@ ActiveRecord::Schema.define(:version => 20110321173651) do
 
   create_table "hvp_elements", :force => true do |t|
     t.integer  "axiological_norm"
-    t.integer  "given_score"
+    t.integer  "given_value"
     t.string   "part_id"
     t.string   "category_id"
     t.integer  "hartman_value_profile_id"

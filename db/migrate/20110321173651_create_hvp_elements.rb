@@ -2,7 +2,7 @@ class CreateHvpElements < ActiveRecord::Migration
   def self.up
     create_table :hvp_elements do |t|
       t.integer :axiological_norm
-      t.integer :given_score
+      t.integer :given_value
       t.string :part_id
       t.string :category_id
       t.integer :hartman_value_profile_id

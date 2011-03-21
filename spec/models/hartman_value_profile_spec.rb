@@ -8,13 +8,21 @@ describe HartmanValueProfile do
   end
 
   it "should create a new profile given valid attributes" do
-    @user.hartman_value_profiles.create!(@attr)
+    # set taken_at inside of a block because the validations fail otherwise.
+    @user.hartman_value_profiles.create! do |hvp|
+      hvp.taken_at = DateTime.now
+    end
   end
 
   describe "associations" do
     
     before(:each) do
-      @hvp = @user.hartman_value_profiles.create(@attr)
+      # I have to set taken_at inside a block or else the following
+      # tests fail. 
+      # TODO: find out why!
+      @hvp = @user.hartman_value_profiles.create do |hvp|
+        hvp.taken_at = DateTime.now
+      end
       @hvp_element1 = Factory(:hvp_element, :hartman_value_profile => @hvp,
                               :axiological_norm => 1,
                               :given_score => 2)
@@ -46,4 +54,14 @@ describe HartmanValueProfile do
       end
     end # "hartman value profile associations"
   end # "associations"
+
+  describe "validations" do
+    it "should require a user id" do
+      HartmanValueProfile.new(@attr).should_not be_valid
+    end
+
+    it "should require taken_at to be non-blank" do
+      @user.hartman_value_profiles.build(:taken_at => "").should_not be_valid
+    end
+  end # "validation"
 end
