@@ -128,4 +128,23 @@ describe User do
       @user.should be_admin
     end
   end # describe "admin attribute"
+
+  describe "hartman value profile associations" do
+    
+    before(:each) do
+      @user = User.create(@attr)
+      @hvp1 = Factory(:hartman_value_profile, :user => @user,
+                      :taken_at => 1.week.ago)
+      @hvp2 = Factory(:hartman_value_profile, :user => @user,
+                      :taken_at => 1.day.ago)
+    end
+    
+    it "should have a hartman_value_profiles attribute" do
+      @user.should respond_to(:hartman_value_profiles)
+    end
+
+    it "should have the right hartman_value_profiles in the right order" do
+      @user.hartman_value_profiles.should == [@hvp2, @hvp1]
+    end
+  end # "hartman value profile associations"
 end # describe User

@@ -10,7 +10,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110313044020) do
+ActiveRecord::Schema.define(:version => 20110321173651) do
+
+  create_table "hartman_value_profiles", :force => true do |t|
+    t.datetime "taken_at"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hartman_value_profiles", ["user_id"], :name => "index_hartman_value_profiles_on_user_id"
+
+  create_table "hvp_elements", :force => true do |t|
+    t.integer  "axiological_norm"
+    t.integer  "given_score"
+    t.string   "part_id"
+    t.string   "category_id"
+    t.integer  "hartman_value_profile_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "hvp_elements", ["hartman_value_profile_id"], :name => "index_hvp_elements_on_hartman_value_profile_id"
 
   create_table "microposts", :force => true do |t|
     t.string   "content"
@@ -18,6 +39,8 @@ ActiveRecord::Schema.define(:version => 20110313044020) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "microposts", ["user_id"], :name => "index_microposts_on_user_id"
 
   create_table "users", :force => true do |t|
     t.string   "username"
@@ -28,8 +51,11 @@ ActiveRecord::Schema.define(:version => 20110313044020) do
     t.string   "password_salt"
     t.boolean  "admin",             :default => false
     t.string   "persistence_token"
+    t.string   "oauth_token"
+    t.string   "oauth_secret"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
+  add_index "users", ["oauth_token"], :name => "index_users_on_oauth_token"
 
 end

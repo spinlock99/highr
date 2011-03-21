@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110313044020
+# Schema version: 20110321173651
 #
 # Table name: users
 #
@@ -12,6 +12,8 @@
 #  password_salt     :string(255)
 #  admin             :boolean
 #  persistence_token :string(255)
+#  oauth_token       :string(255)
+#  oauth_secret      :string(255)
 #
 
 #User model is a subclass of ActiveRecord::Base 
@@ -26,4 +28,5 @@ class User < ActiveRecord::Base
   validates :username, :presence => true,
                        :length => { :maximum => 50}
 
+  has_many :hartman_value_profiles
 end
