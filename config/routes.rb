@@ -16,11 +16,14 @@ Highr::Application.routes.draw do
   #restrict sessions controler to only handle new, create and destroy
   resources :user_sessions, :only => [:new, :create, :destroy] 
 
+  # resources for hartman value profile
+  resources :hartman_value_profiles
+
   #named routes
   match '/signup', :to => 'users#new'
   match '/signin', :to => 'user_sessions#new'
   match '/signout', :to => 'user_sessions#destroy'
-
+  
   # Authlogic routes
 #  resources :user_sessions
 #  match 'login' => 'user_sessions#new', :as => :login

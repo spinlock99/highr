@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110321173651) do
+ActiveRecord::Schema.define(:version => 20110321232428) do
 
   create_table "hartman_value_profiles", :force => true do |t|
     t.datetime "taken_at"
@@ -32,6 +32,15 @@ ActiveRecord::Schema.define(:version => 20110321173651) do
   end
 
   add_index "hvp_elements", ["hartman_value_profile_id"], :name => "index_hvp_elements_on_hartman_value_profile_id"
+
+  create_table "hvp_masters", :force => true do |t|
+    t.integer  "axiological_norm"
+    t.string   "part_id"
+    t.string   "category_id"
+    t.string   "phrase"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "microposts", :force => true do |t|
     t.string   "content"

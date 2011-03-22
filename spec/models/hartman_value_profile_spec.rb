@@ -25,10 +25,10 @@ describe HartmanValueProfile do
       end
       @hvp_element1 = Factory(:hvp_element, :hartman_value_profile => @hvp,
                               :axiological_norm => 1,
-                              :given_score => 2)
+                              :given_value => 2)
       @hvp_element2 = Factory(:hvp_element, :hartman_value_profile => @hvp,
                               :axiological_norm => 2,
-                              :given_score => 1)
+                              :given_value => 1)
     end
     
     describe "user associations" do
