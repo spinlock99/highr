@@ -9,21 +9,35 @@ Highr::Application.routes.draw do
   match '/help', :to => 'pages#help'
 
   #RESTful pages
-  resources :users #enables GET request on /users to work 
-                   #(i.e. /users/1 will return the user record 
-                   #in the database with :id = 1)
+  
+  # enables GET request on /users to work 
+  # (i.e. /users/1 will return the user record 
+  # in the database with :id = 1)
+  resources :users
+
+  # resources for hartman value profile
+  resources :hartman_value_profiles do
+    member do
+      get 'part1'
+      get 'part2'
+    end
+  end
 
   #restrict sessions controler to only handle new, create and destroy
   resources :user_sessions, :only => [:new, :create, :destroy] 
 
-  # resources for hartman value profile
-  resources :hartman_value_profiles
 
   #named routes
   match '/signup', :to => 'users#new'
   match '/signin', :to => 'user_sessions#new'
   match '/signout', :to => 'user_sessions#destroy'
+
   
+  # testing out routes for the HVP
+
+#  match ({'users/:id' => 'users#edit'})
+#  match ({'hartman_value_profiles/:id/part1' => 'hartman_value_profiles#part1'})
+
   # Authlogic routes
 #  resources :user_sessions
 #  match 'login' => 'user_sessions#new', :as => :login

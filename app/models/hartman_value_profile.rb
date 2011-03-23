@@ -12,7 +12,7 @@
 
 class HartmanValueProfile < ActiveRecord::Base
   # none of the elements of this model should be editable from the web
-  attr_accessible
+#  attr_accessible
 
   # set-up user and hvp_elements associations
   belongs_to :user
@@ -24,4 +24,10 @@ class HartmanValueProfile < ActiveRecord::Base
 
   # order the tests to that the newest is displayed first
   default_scope :order => 'hartman_value_profiles.taken_at DESC'
+
+  def hvp_element_attributes=(hvp_element_attributess)
+    hvp_element_attributes.each do |attributes|
+      hvp_elements.build(attributes)
+    end
+  end
 end
