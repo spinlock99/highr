@@ -6,6 +6,7 @@
     <%= fields_for "hartman_value_profile[hvp_element_attributes][]", 
                          hvp_element do |hvp_element_form| %>
     <p>
+      Phrase: <%= hvp_element_form.text_field :phrase %>
       Given Value: <%= hvp_element_form.text_field :given_value %>
     </p>
     <% end %>

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110321232428) do
+ActiveRecord::Schema.define(:version => 20110323060504) do
 
   create_table "hartman_value_profiles", :force => true do |t|
     t.datetime "taken_at"
@@ -29,6 +29,7 @@ ActiveRecord::Schema.define(:version => 20110321232428) do
     t.integer  "hartman_value_profile_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "phrase"
   end
 
   add_index "hvp_elements", ["hartman_value_profile_id"], :name => "index_hvp_elements_on_hartman_value_profile_id"

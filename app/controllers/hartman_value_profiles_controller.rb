@@ -17,6 +17,7 @@ class HartmanValueProfilesController < ApplicationController
     logger.debug "\t#{@hvp_masters}\n"
     @hvp_masters.each do |hvp_master|
       @hvp_element = @hvp.hvp_elements.create do |hvp_element|
+        hvp_element.phrase = hvp_master.phrase
         hvp_element.given_value = 1
         hvp_element.axiological_norm = hvp_master.axiological_norm
         hvp_element.part_id = hvp_master.part_id
