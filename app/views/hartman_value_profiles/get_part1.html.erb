@@ -1,0 +1,14 @@
+<h1>Part 1</h1>
+
+<% form_for @hvp, :url => put_part1_hartman_value_profile_path(@hvp) do |hvp_form| %>
+    <%= hvp_form.fields_for :hvp_elements do |hvp_element| %>
+      <p>
+        Value: <%= hvp_element.text_field :given_value %>
+        <%= hvp_element.object.phrase %>
+      </p>
+    <% end %>
+  <p>
+    <%= submit_tag "Continue" %>
+  </p>
+<% end %>
+

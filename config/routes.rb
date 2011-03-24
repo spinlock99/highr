@@ -18,8 +18,10 @@ Highr::Application.routes.draw do
   # resources for hartman value profile
   resources :hartman_value_profiles do
     member do
-      get 'part1'
-      post 'part2'
+      get 'get_part1'
+      put 'put_part1'
+      get 'get_part2'
+      put 'put_part2'
     end
   end
 

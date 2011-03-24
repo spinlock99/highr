@@ -9,50 +9,80 @@ class HartmanValueProfilesController < ApplicationController
   end
 
   def create
+    # create the hartman value profile
     @hvp = current_user.hartman_value_profiles.create do |hvp|
       hvp.taken_at = DateTime.now
     end
+    # get the questions for part1
     @hvp_masters = HvpMaster.where("part_id = 'world'")
-    logger.debug "\n\n\t @hvp_masters \n"
-    logger.debug "\t#{@hvp_masters}\n"
     @hvp_masters.each do |hvp_master|
       @hvp_element = @hvp.hvp_elements.create do |hvp_element|
         hvp_element.phrase = hvp_master.phrase
-        hvp_element.given_value = 1
         hvp_element.axiological_norm = hvp_master.axiological_norm
         hvp_element.part_id = hvp_master.part_id
         hvp_element.category_id = hvp_master.category_id
+#  this does not change the problem of sthe element not being saved.
+#        hvp_element.given_value = 1
       end
-      @hvp_element.save
+      @hvp_element.save!
     end
-    #
-    # TODO: resolve data accessibility and validation issues.
-    #
-    # @hvp.save is failing but I'm seeing a new hartman_value_profile 
-    # record and hvp_elements put into the db
-    #
-    # The issue has something to do with defining attr_accessible in the 
-    # model and also the validations in the hvp_elements model
-    logger.debug "\n\n\t calling @hvp.save \n"
     if @hvp.save!
-      logger.debug "\n\n\t @hvp.save succeeded \n"
       session[:hvp_id] = @hvp.id
       flash[:success] = "Part 1"
-      redirect_to part1_hartman_value_profile_path(@hvp)
+      redirect_to get_part1_hartman_value_profile_path(@hvp)
     else
-      logger.debug "\n\n\t @hvp.save failed \n"
       @title = "Hartman Value Profile"
       render :new
     end
   end
 
-  def part1
+  def get_part1
     @title = "Hartman Value Profile - Part 1"
     @hvp = HartmanValueProfile.find_by_id(session[:hvp_id])
-#    logger.debug @hvp.hvp_elements
   end
 
-  def part2
+  def put_part1
+    # save the results from part1
+    @hvp = HartmanValueProfile.find_by_id(session[:hvp_id])
+    @hvp.update_attributes(params[:hartman_value_profile])
+    @hvp.save!
+    
+    # set up the questions for part2
+    @hvp_masters = HvpMaster.where("part_id = 'self'")
+    @hvp_masters.each do |hvp_master|
+      @hvp_element = @hvp.hvp_elements.create do |hvp_element|
+        hvp_element.phrase = hvp_master.phrase
+        hvp_element.axiological_norm = hvp_master.axiological_norm
+        hvp_element.part_id = hvp_master.part_id
+        hvp_element.category_id = hvp_master.category_id
+      end
+      @hvp_element.save!
+    end
+    if @hvp.save!
+      session[:hvp_id] = @hvp.id
+      flash[:success] = "Part 2"
+      redirect_to get_part2_hartman_value_profile_path(@hvp)
+    else
+      @title = "Hartman Value Profile"
+      render :new
+    end    
+  end
+
+  def get_part2
     @title = "Hartman Value Profile - Part 2"
+    @hvp = HartmanValueProfile.find_by_id(session[:hvp_id])
+  end
+
+  def put_part2
+    @hvp = HartmanValueProfile.find_by_id(session[:hvp_id])
+    @hvp.update_attributes(params[:hartman_value_profile])
+    if @hvp.save
+      flash[:success] = "Hartman Value Profile Completed"
+      redirect_to current_user
+    else
+      # TODO: figure out a better way to handle this error.
+      flash[:error] = "There was a problem saving the test"
+      redirect_to :root
+    end
   end
 end
