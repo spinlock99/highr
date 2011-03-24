@@ -12,7 +12,7 @@ class HartmanValueProfilesController < ApplicationController
     @hvp = current_user.hartman_value_profiles.create do |hvp|
       hvp.taken_at = DateTime.now
     end
-    @hvp_masters = HvpMaster.all
+    @hvp_masters = HvpMaster.where("part_id = 'world'")
     logger.debug "\n\n\t @hvp_masters \n"
     logger.debug "\t#{@hvp_masters}\n"
     @hvp_masters.each do |hvp_master|
@@ -26,10 +26,13 @@ class HartmanValueProfilesController < ApplicationController
       @hvp_element.save
     end
     #
-    # PICK UP HERE. 
+    # TODO: resolve data accessibility and validation issues.
+    #
     # @hvp.save is failing but I'm seeing a new hartman_value_profile 
     # record and hvp_elements put into the db
     #
+    # The issue has something to do with defining attr_accessible in the 
+    # model and also the validations in the hvp_elements model
     logger.debug "\n\n\t calling @hvp.save \n"
     if @hvp.save!
       logger.debug "\n\n\t @hvp.save succeeded \n"
@@ -46,7 +49,7 @@ class HartmanValueProfilesController < ApplicationController
   def part1
     @title = "Hartman Value Profile - Part 1"
     @hvp = HartmanValueProfile.find_by_id(session[:hvp_id])
-    logger.debug @hvp.hvp_elements
+#    logger.debug @hvp.hvp_elements
   end
 
   def part2

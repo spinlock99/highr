@@ -17,6 +17,9 @@ class HartmanValueProfile < ActiveRecord::Base
   # set-up user and hvp_elements associations
   belongs_to :user
   has_many :hvp_elements
+  # enable forms for hartman value profile to show hvp_elements
+  # in forms.
+  accepts_nested_attributes_for :hvp_elements
 
   # validations
   validates :taken_at, :presence => true
