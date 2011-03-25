@@ -14,25 +14,27 @@
 #
 
 class HvpElement < ActiveRecord::Base
-#  attr_accessible :given_value
+  attr_accessible :given_value
 
   belongs_to :hartman_value_profile
 
   #validations
-#  validates :hartman_value_profile_id, :presence => true
+  validates :hartman_value_profile_id, :presence => true
 
-#  validates :axiological_norm, :presence => true
-#  validates_numericality_of :axiological_norm, :only_integer => true
-#  validates_inclusion_of :axiological_norm, :in => 1..18
+  validates :axiological_norm, :presence => true
+  validates_numericality_of :axiological_norm, :only_integer => true
+  validates_inclusion_of :axiological_norm, :in => 1..18
                  
 #  validates :given_value, :presence => true
-#  validates_numericality_of :given_value, :only_integer => true
-#  validates_inclusion_of :given_value, :in => 1..18
+  validates_numericality_of :given_value, :only_integer => true, 
+                            :if => :given_value?
+  validates_inclusion_of :given_value, :in => 1..18,
+                         :if => :given_value?
 
-#  validates :part_id, :presence => true
-#  validates_inclusion_of :part_id, :in => ["self", "world"]
+  validates :part_id, :presence => true
+  validates_inclusion_of :part_id, :in => ["self", "world"]
 
-#  validates :category_id, :presence => true
-#  validates_inclusion_of :category_id, 
-#                   :in => ["intrinsic", "extrinsic", "systemic"]
+  validates :category_id, :presence => true
+  validates_inclusion_of :category_id, 
+                   :in => ["intrinsic", "extrinsic", "systemic"]
 end

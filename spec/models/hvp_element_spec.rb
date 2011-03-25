@@ -77,15 +77,15 @@ describe HvpElement do
       @hvp_element.should_not be_valid
     end
 
-    it "should require given_value to be present" do
+    it "should not require given_value to be present" do
 #      @hvp.hvp_elements.build(:given_value => "").should_not be_valid
       @hvp_element.given_value = "" 
-      @hvp_element.should_not be_valid
+      @hvp_element.should be_valid
     end
 
     it "should require given_value to be greater than or equal to 1" do
 #      @hvp.hvp_elements.build(:given_value => "0").should_not be_valid
-      @hvp_element.given_value = 0
+      @hvp_element.given_value = -1
       @hvp_element.should_not be_valid
     end
 

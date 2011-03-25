@@ -22,8 +22,8 @@ class HartmanValueProfile < ActiveRecord::Base
   accepts_nested_attributes_for :hvp_elements
 
   # validations
-#  validates :taken_at, :presence => true
-#  validates :user_id, :presence => true
+  validates :taken_at, :presence => true
+  validates :user_id, :presence => true
 
   # order the tests to that the newest is displayed first
   default_scope :order => 'hartman_value_profiles.taken_at DESC'

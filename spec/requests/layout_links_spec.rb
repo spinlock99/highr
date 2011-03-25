@@ -72,5 +72,11 @@ describe "LayoutLinks" do
       response.should have_selector("a", :href => user_path(@user),
                                     :content => "Profile")
     end
+    it "should have a HVP link" do
+      visit root_path
+      response.should have_selector("a", 
+                          :href => new_hartman_value_profile_path,
+                          :content => "Hartman Value Profile")
+    end
   end # describe "when signed in"
 end # describe "Layout links"

@@ -139,6 +139,11 @@ describe UsersController do
       get :show, :id => @user
       response.should have_selector("h1>img", :class => "gravatar")
     end
+
+    it "should show a link to take the Hartman Value Profile" do
+      get :show, :id => @user
+      response.should have_selector("a", :content => "Hartman Value Profile")
+    end
   end
   
   describe "POST 'create'" do

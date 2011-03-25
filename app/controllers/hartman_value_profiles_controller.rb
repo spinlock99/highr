@@ -1,4 +1,5 @@
 class HartmanValueProfilesController < ApplicationController
+  before_filter :require_user
   
   def new
     # assign the text for the title
@@ -45,7 +46,6 @@ class HartmanValueProfilesController < ApplicationController
     # save the results from part1
     @hvp = HartmanValueProfile.find_by_id(session[:hvp_id])
     @hvp.update_attributes(params[:hartman_value_profile])
-    @hvp.save!
     
     # set up the questions for part2
     @hvp_masters = HvpMaster.where("part_id = 'self'")
@@ -58,7 +58,7 @@ class HartmanValueProfilesController < ApplicationController
       end
       @hvp_element.save!
     end
-    if @hvp.save!
+    if @hvp.save
       session[:hvp_id] = @hvp.id
       flash[:success] = "Part 2"
       redirect_to get_part2_hartman_value_profile_path(@hvp)

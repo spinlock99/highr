@@ -17,14 +17,14 @@ end
 HvpMaster.create do |hvp|
   hvp.axiological_norm = 9
   hvp.phrase = "A technical improvement"
-  hvp.part_id = "systemic"
+  hvp.part_id = "world"
   hvp.category_id = "extrinsic"
 end
 
 HvpMaster.create do |hvp|
   hvp.axiological_norm = 10
   hvp.phrase = "Nonsense"
-  hvp.part_id = "systemic"
+  hvp.part_id = "world"
   hvp.category_id = "extrinsic"
 end
 
