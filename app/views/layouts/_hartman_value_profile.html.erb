@@ -1,0 +1,115 @@
+<% if @user.hartman_value_profiles.empty? %>
+  <%= link_to "Hartman Value Profile", new_hartman_value_profile_path %>
+<% else %>
+  <div class="hartman_scores">
+    <h2>World</h2>
+    <ul>
+      <li>DIF: <%= @user.hartman_value_profiles.first.dif_v %></li>
+      <li>DIM: <%= @user.hartman_value_profiles.first.dim_v %></li>
+      <li>DIM%: <%= @user.hartman_value_profiles.first.dim_percent_v %></li>
+      <li>DIM-I: <%= @user.hartman_value_profiles.first.dim_i_v %></li>
+      <li>DIM-E: <%= @user.hartman_value_profiles.first.dim_e_v %></li>
+      <li>DIM-S: <%= @user.hartman_value_profiles.first.dim_s_v %></li>
+    </ul>
+    <ul>
+      <li>INT: <%= @user.hartman_value_profiles.first.int_v %></li>
+      <li>DI: <%= @user.hartman_value_profiles.first.di_v %></li>
+      <li>INT%: <%= @user.hartman_value_profiles.first.int_percent_v %></li>
+      <li>INT-I: <%= @user.hartman_value_profiles.first.int_i_v %></li>
+      <li>INT-E: <%= @user.hartman_value_profiles.first.int_e_v %></li>
+      <li>INT-S: <%= @user.hartman_value_profiles.first.int_s_v %></li>
+    </ul>
+    <ul>
+      <li>DIS: <%= @user.hartman_value_profiles.first.dis_v %></li>    
+    </ul>
+    <ul>
+      <li>V.Q.: <%= @user.hartman_value_profiles.first.vq_left %> - 
+                <%= @user.hartman_value_profiles.first.vq_right %></li>
+    </ul>
+    <ul>
+      <li>Total Positive Score: 
+          <%= @user.hartman_value_profiles.first.positive_total_v %></li>
+      <li>Positive - I: 
+          <%= @user.hartman_value_profiles.first.positive_i_v %></li>
+      <li>Positive - E:
+          <%= @user.hartman_value_profiles.first.positive_e_v %></li>
+      <li>Positive - S:
+          <%= @user.hartman_value_profiles.first.positive_s_v %></li> 
+    </ul>
+    <ul>
+      <li>Total Negative Score:
+          <%= @user.hartman_value_profiles.first.negative_total_v %></li>
+      <li>Negative - I:
+          <%= @user.hartman_value_profiles.first.negative_i_v %></li>
+      <li>Negative - E:
+          <%= @user.hartman_value_profiles.first.negative_e_v %></li>
+      <li>Negative - S:
+          <%= @user.hartman_value_profiles.first.negative_s_v %></li>
+    </ul>
+    <ul>
+      <li>AI%: <%= @user.hartman_value_profiles.first.ai_percent_v %></li>
+    </ul>
+  </div>
+  <div class="hartman_scores">
+    <h2>Self</h2>
+    <ul>
+      <li>DIF: <%= @user.hartman_value_profiles.first.dif_s %></li>
+      <li>DIM: <%= @user.hartman_value_profiles.first.dim_s %></li>
+      <li>DIM%: <%= @user.hartman_value_profiles.first.dim_percent_s %></li>
+      <li>DIM-I: <%= @user.hartman_value_profiles.first.dim_i_s %></li>
+      <li>DIM-E: <%= @user.hartman_value_profiles.first.dim_e_s %></li>
+      <li>DIM-S: <%= @user.hartman_value_profiles.first.dim_s_s %></li>
+    </ul>
+    <ul>
+      <li>INT: <%= @user.hartman_value_profiles.first.int_s %></li>
+      <li>DI: <%= @user.hartman_value_profiles.first.di_s %></li>
+      <li>INT%: <%= @user.hartman_value_profiles.first.int_percent_s %></li>
+      <li>INT-I: <%= @user.hartman_value_profiles.first.int_i_s %></li>
+      <li>INT-E: <%= @user.hartman_value_profiles.first.int_e_s %></li>
+      <li>INT-S: <%= @user.hartman_value_profiles.first.int_s_s %></li>
+    </ul>
+    <ul>
+      <li>DIS: <%= @user.hartman_value_profiles.first.dis_s %></li>    
+    </ul>
+    <ul>
+      <li>V.Q.: <%= @user.hartman_value_profiles.first.sq_left %> - 
+                <%= @user.hartman_value_profiles.first.sq_right %></li>
+    </ul>
+    <ul>
+      <li>Total Positive Score: 
+          <%= @user.hartman_value_profiles.first.positive_total_s %></li>
+      <li>Positive - I: 
+          <%= @user.hartman_value_profiles.first.positive_i_s %></li>
+      <li>Positive - E:
+          <%= @user.hartman_value_profiles.first.positive_e_s %></li>
+      <li>Positive - S:
+          <%= @user.hartman_value_profiles.first.positive_s_s %></li> 
+    </ul>
+    <ul>
+      <li>Total Negative Score:
+          <%= @user.hartman_value_profiles.first.negative_total_s %></li>
+      <li>Negative - I:
+          <%= @user.hartman_value_profiles.first.negative_i_s %></li>
+      <li>Negative - E:
+          <%= @user.hartman_value_profiles.first.negative_e_s %></li>
+      <li>Negative - S:
+          <%= @user.hartman_value_profiles.first.negative_s_s %></li>
+    </ul>
+    <ul>
+      <li>AI%: <%= @user.hartman_value_profiles.first.ai_percent_s %></li>
+    </ul>
+  </div>
+  <div class="hartman_scores">
+    <h2>Integration</h2>
+    <ul>
+      <li>DIF1/DIF2: 
+        <%= @user.hartman_value_profiles.first.dif1_over_dif2 %></li>
+      <li>BQr1: <%= @user.hartman_value_profiles.first.bqr1 %></li>
+      <li>BQa1: <%= @user.hartman_value_profiles.first.bqa1 %></li>
+      <li>BQr2: <%= @user.hartman_value_profiles.first.bqr2 %></li>
+      <li>BQa2: <%= @user.hartman_value_profiles.first.bqa2 %></li>
+      <li>CQ1: <%= @user.hartman_value_profiles.first.cq1 %></li>
+      <li>CQ2: <%= @user.hartman_value_profiles.first.cq2 %></li>
+    </ul>
+  </div>
+<% end %>

@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110321173651
+# Schema version: 20110328162454
 #
 # Table name: hvp_elements
 #
@@ -11,6 +11,7 @@
 #  hartman_value_profile_id :integer
 #  created_at               :datetime
 #  updated_at               :datetime
+#  phrase                   :string(255)
 #
 
 class HvpElement < ActiveRecord::Base

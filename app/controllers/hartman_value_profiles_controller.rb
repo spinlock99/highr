@@ -76,6 +76,8 @@ class HartmanValueProfilesController < ApplicationController
   def put_part2
     @hvp = HartmanValueProfile.find_by_id(session[:hvp_id])
     @hvp.update_attributes(params[:hartman_value_profile])
+    @hvp.score_profile
+
     if @hvp.save
       flash[:success] = "Hartman Value Profile Completed"
       redirect_to current_user

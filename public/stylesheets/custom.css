@@ -55,6 +55,10 @@
     -webkit-box-shadow: 0 0 2em #888;
 */
 }
+/* Hartman Value Profile Scoring */
+.hartman_scores {
+    float: left;
+}
 
 .login_box {
     float: left;
