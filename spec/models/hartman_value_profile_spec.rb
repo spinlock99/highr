@@ -8,7 +8,7 @@ describe HartmanValueProfile do
   end
 
   it "should create a new profile given valid attributes" do
-    # set taken_at inside of a block because the validations fail otherwise.
+    # set taken_at inside of a block because it is not an accessible_attribute
     @user.hartman_value_profiles.create! do |hvp|
       hvp.taken_at = DateTime.now
     end
@@ -17,9 +17,6 @@ describe HartmanValueProfile do
   describe "associations" do
     
     before(:each) do
-      # I have to set taken_at inside a block or else the following
-      # tests fail. 
-      # TODO: find out why!
       @hvp = @user.hartman_value_profiles.create do |hvp|
         hvp.taken_at = DateTime.now
       end
