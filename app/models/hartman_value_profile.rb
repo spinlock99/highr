@@ -101,13 +101,14 @@ class HartmanValueProfile < ActiveRecord::Base
     self.dis_v = calc_dis("world")
     self.vq_left = self.dif_v + self.dim_v + self.int_v + self.dis_v
     self.vq_right = self.dim_v + self.int_v + self.dis_v
-    self.dim_percent_v = self.dim_v / self.dif_v
-    self.int_percent_v = self.int_v / self.dif_v
     self.positive_total_v = 
       self.positive_i_v + self.positive_e_v + self.positive_s_v
     self.negative_total_v = 
       self.negative_i_v + self.negative_e_v + self.negative_s_v
-    self.ai_percent_v = self.negative_total_v / self.dif_v
+
+    self.dim_percent_v = 100.0 * (self.dim_v / Float(self.dif_v))
+    self.int_percent_v = 100.0 * (self.int_v / Float(self.dif_v))
+    self.ai_percent_v  = 100.0 * (self.negative_total_v / Float(self.dif_v))
 
     self.dim_i_s, self.int_i_s, self.positive_i_s, self.negative_i_s = 
       calc_dim_and_int("intrinsic", "self")
@@ -124,25 +125,26 @@ class HartmanValueProfile < ActiveRecord::Base
     self.dis_s = calc_dis("self")
     self.sq_left = self.dif_s + self.dim_s + self.int_s + self.dis_s
     self.sq_right = self.dim_s + self.int_s + self.dis_s
-    self.dim_percent_s = self.dim_s / self.dif_s
-    self.int_percent_s = self.int_s / self.dif_s
     self.positive_total_s = 
       self.positive_i_s + self.positive_e_s + self.positive_s_s
     self.negative_total_s = 
       self.negative_i_s + self.negative_e_s + self.negative_s_s
-    self.ai_percent_s = self.negative_total_s / self.dif_s
 
-    self.bqr1 = self.sq_left / self.vq_left
-    self.bqa1 = (self.sq_left * self.vq_left)/2
+    self.dim_percent_s = 100.0 * (self.dim_s / Float(self.dif_s))
+    self.int_percent_s = 100.0 * (self.int_s / Float(self.dif_s))
+    self.ai_percent_s  = 100.0 * (self.negative_total_s / Float(self.dif_s))
 
-    self.bqr2 = self.sq_right / self.vq_right
-    self.bqa2 = (self.sq_right + self.vq_right)/2
+    self.bqr1 = self.sq_left / Float(self.vq_left)
+    self.bqa1 = (self.sq_left + self.vq_left)/2.0
+
+    self.bqr2 = self.sq_right / Float(self.vq_right)
+    self.bqa2 = (self.sq_right + self.vq_right)/2.0
 
     self.cq1 = self.bqr1 * self.bqa1
     self.cq2 = self.bqr2 * self.bqa2
 
-    self.dif1_over_dif2 = 
-      [self.dif_v, self.dif_s].min / [self.dif_v, self.dif_s].max
+    self.dif1_over_dif2 = 100.0 *
+      [self.dif_v, self.dif_s].min / Float([self.dif_v, self.dif_s].max)
   end
 
 private
@@ -157,17 +159,17 @@ private
                                   :part_id => part_id)
     category.each do |c|
       if c.axiological_norm < 10
-        top_box = (c.axiological_norm - c.given_value).abs
+        top_box = c.axiological_norm - c.given_value
       else
-        top_box = (c.given_value - c.axiological_norm).abs
+        top_box = c.given_value - c.axiological_norm
       end
       dim += top_box.abs
       if top_box > 0
         int += (top_box - 2) > 0 ? (top_box - 2) : 0
-        positive += 1
+        positive += top_box
       elsif top_box < 0
         int += (top_box + 2) < 0 ? (top_box + 2).abs : 0
-        negative += 1
+        negative += top_box.abs
       end
     end
     return dim, int, positive, negative
