@@ -3,10 +3,12 @@
     <td class="main">
       <h1>
 	<%= gravatar_for @user %>
+	<%= @user.username %>
       </h1>
       <%= render('layouts/hartman_value_profile') %>
     </td>
     <td class="sidebar round">
+      <strong>Username</strong> <%= @user.username %><br />
       <strong>URL</strong>  <%= link_to user_path(@user), @user %>
     </td>
   </tr>

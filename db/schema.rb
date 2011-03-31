@@ -10,7 +10,28 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110328162454) do
+ActiveRecord::Schema.define(:version => 20110331175714) do
+
+  create_table "access_tokens", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "type",       :limit => 30
+    t.string   "key"
+    t.string   "token",      :limit => 1024
+    t.string   "secret"
+    t.boolean  "active"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  add_index "access_tokens", ["key"], :name => "index_access_tokens_on_key", :unique => true
+
+  create_table "authentications", :force => true do |t|
+    t.integer  "user_id"
+    t.string   "provider"
+    t.string   "uid"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "hartman_value_profiles", :force => true do |t|
     t.datetime "taken_at"
@@ -107,20 +128,31 @@ ActiveRecord::Schema.define(:version => 20110328162454) do
 
   add_index "microposts", ["user_id"], :name => "index_microposts_on_user_id"
 
-  create_table "users", :force => true do |t|
-    t.string   "username"
-    t.string   "email"
+  create_table "sessions", :force => true do |t|
+    t.string   "session_id", :null => false
+    t.text     "data"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.string   "crypted_password"
-    t.string   "password_salt"
-    t.boolean  "admin",             :default => false
-    t.string   "persistence_token"
-    t.string   "oauth_token"
-    t.string   "oauth_secret"
+  end
+
+  add_index "sessions", ["session_id"], :name => "index_sessions_on_session_id"
+  add_index "sessions", ["updated_at"], :name => "index_sessions_on_updated_at"
+
+  create_table "users", :force => true do |t|
+    t.string   "email",                               :default => "", :null => false
+    t.string   "encrypted_password",   :limit => 128, :default => "", :null => false
+    t.string   "reset_password_token"
+    t.datetime "remember_created_at"
+    t.integer  "sign_in_count",                       :default => 0
+    t.datetime "current_sign_in_at"
+    t.datetime "last_sign_in_at"
+    t.string   "current_sign_in_ip"
+    t.string   "last_sign_in_ip"
+    t.datetime "created_at"
+    t.datetime "updated_at"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
-  add_index "users", ["oauth_token"], :name => "index_users_on_oauth_token"
+  add_index "users", ["reset_password_token"], :name => "index_users_on_reset_password_token", :unique => true
 
 end

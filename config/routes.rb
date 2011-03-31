@@ -1,5 +1,7 @@
 Highr::Application.routes.draw do
 
+  devise_for :users
+
   #set the root of the application to /pages/home
   root :to => 'pages#home'
 
@@ -30,9 +32,9 @@ Highr::Application.routes.draw do
 
 
   #named routes
-  match '/signup', :to => 'users#new'
-  match '/signin', :to => 'user_sessions#new'
-  match '/signout', :to => 'user_sessions#destroy'
+#  match '/signup', :to => 'users#new'
+#  match '/signin', :to => 'user_sessions#new'
+#  match '/signout', :to => 'user_sessions#destroy'
 
   
   # testing out routes for the HVP

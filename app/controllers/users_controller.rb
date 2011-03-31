@@ -1,18 +1,22 @@
 class UsersController < ApplicationController
   # tell the controller to run the require_no_user method before
   # executing the new or create methods
-  before_filter :require_no_user, :only => [:new, :create]
+# Devise Hack
+#  before_filter :require_no_user, :only => [:new, :create]
   
   # tell the controller to run the :require_user method before
   # the show, and index functions
-  before_filter :require_user, :only => [:edit, :update, :index, 
-                                         :show, :destroy]
+# Devise Hack
+#  before_filter :require_user, :only => [:edit, :update, :index, 
+#                                         :show, :destroy]
   
   # make sure we have the correct user before allowing an edit or update
-  before_filter :correct_user, :only => [:edit, :update]
+# Devise Hack
+#  before_filter :correct_user, :only => [:edit, :update]
 
   # restrict destroy to admins only
-  before_filter :admin_user, :only => :destroy
+# Devise Hack
+#  before_filter :admin_user, :only => :destroy
 
   def new
     # redirect a signed in user to their home page
@@ -40,8 +44,9 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = @current_user
-    @title = @user.username
+    @user = current_user
+# Devise Hack
+#    @title = @user.username
   end
 
   def edit

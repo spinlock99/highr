@@ -4,5 +4,6 @@ class ApplicationController < ActionController::Base
   
   # make the authentication methods in the 
   # SessionsHelper available in contollers
-  include UserSessionsHelper
+# Devise hack
+#  include UserSessionsHelper
 end

@@ -1,5 +1,6 @@
 class HartmanValueProfilesController < ApplicationController
-  before_filter :require_user
+# Devise hack
+#  before_filter :require_user
   
   def new
     # assign the text for the title

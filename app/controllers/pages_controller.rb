@@ -1,6 +1,7 @@
 class PagesController < ApplicationController
   def home
-    if signed_in?
+# Devise hack
+    if user_signed_in?
       redirect_to current_user
     else
       @title = "Home"

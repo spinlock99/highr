@@ -2,6 +2,10 @@
 <%= form_for(@user, :html => {:id => "sign_up"}) do |f| %>
 <%= render 'shared/error_messages', :object => f.object %>
 <div class="field">
+  <%= f.label :username %>
+  <%= f.text_field :username %>
+</div>
+<div class="field">
   <%= f.label :email %>
   <%= f.text_field :email %>
 </div>
