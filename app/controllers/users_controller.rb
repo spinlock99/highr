@@ -18,6 +18,10 @@ class UsersController < ApplicationController
 # Devise Hack
 #  before_filter :admin_user, :only => :destroy
 
+  # Devise 
+  before_filter :authenticate_user!, :only => [:edit, :update, :index,
+                                               :show, :destroy]
+
   def new
     # redirect a signed in user to their home page
     if current_user
@@ -51,11 +55,11 @@ class UsersController < ApplicationController
 
   def edit
     @title = "Edit user"
-#    @user = @current_user
+    @user = current_user
   end
   
   def update
-    @user = @current_user # makes our views "cleaner" and more consistent
+    @user = current_user # makes our views "cleaner" and more consistent
     if @user.update_attributes(params[:user])
       flash[:success] = "Account updated!"
       redirect_to @user

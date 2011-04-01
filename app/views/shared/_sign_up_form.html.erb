@@ -5,14 +5,20 @@
   <%= f.label :email %>
   <%= f.text_field :email %>
 </div>
-<div class="field">
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-</div>
-<div class="field">
-  <%= f.label :password_confirmation, "Confirmation" %>
-  <%= f.password_field :password_confirmation %>
-</div>
+
+<% if @user.password_required? %>
+
+  <div class="field">
+    <%= f.label :password %>
+    <%= f.password_field :password %>
+  </div>
+  <div class="field">
+    <%= f.label :password_confirmation, "Confirmation" %>
+    <%= f.password_field :password_confirmation %>
+  </div>
+
+<% end %>
+
 <div class="actions">
   <%= image_submit_tag("sign_up.gif", :alt => "Sign Up", :id => "Sign Up") %>
 </div>

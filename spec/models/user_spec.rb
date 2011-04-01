@@ -5,7 +5,6 @@ describe User do
   #create a test user before each spec
   before(:each) do
     @attr = { 
-      :username => "Example User", 
       :email => "user@example.com",
       :password => "foobar",
       :password_confirmation => "foobar"
@@ -16,21 +15,9 @@ describe User do
     User.create!(@attr)
   end
 
-  it "should require a name" do
-    #use the Hash method "merge" to create an invalid user name
-    no_name_user = User.new(@attr.merge(:username => ""))
-    no_name_user.should_not be_valid
-  end
-
   it "should require an email" do
     no_email_user = User.new(@attr.merge(:email => ""))
     no_email_user.should_not be_valid
-  end
-
-  it "should reject names that are too long" do
-    long_name = "a" * 51
-    long_name_user = User.new(@attr.merge(:username => long_name))
-    long_name_user.should_not be_valid
   end
 
   it "should accept valid email addresses" do
@@ -100,34 +87,14 @@ describe User do
     
     #check to see that the user object has an :encryped_passoword data element
     it "should have an encrypted password attribute" do
-      @user.should respond_to(:crypted_password)
+      @user.should respond_to(:encrypted_password)
     end
 
     #check to ensure that the encrypted password is set in the db
     it "should set the encrypted password" do
-      @user.crypted_password.should_not be_blank
+      @user.encrypted_password.should_not be_blank
     end
   end # describe "password encryption"
-
-  describe "admin attribute" do
-    
-    before(:each) do
-      @user = User.create!(@attr)
-    end
-
-    it "should respond to admin" do
-      @user.should respond_to(:admin)
-    end
-
-    it "should not be an admin by default" do
-      @user.should_not be_admin
-    end
-
-    it "should be convertible to an admin" do
-      @user.toggle!(:admin)
-      @user.should be_admin
-    end
-  end # describe "admin attribute"
 
   describe "hartman value profile associations" do
     

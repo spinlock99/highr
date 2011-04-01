@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110331175714) do
+ActiveRecord::Schema.define(:version => 20110331210031) do
 
   create_table "access_tokens", :force => true do |t|
     t.integer  "user_id"

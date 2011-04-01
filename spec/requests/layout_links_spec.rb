@@ -22,14 +22,16 @@ describe "LayoutLinks" do
     response.should have_selector('title', :content => "Help")
   end
 
-  it "should have a signup page at '/signup'" do
-    get '/signup'
-    response.should have_selector('title', :content => "Sign up")
+  it "should have a signup page at '/users/sign_up'" do
+    get '/users/sign_up'
+    response.should have_selector('h2', :content => "Sign up")
+#    response.should have_selector('title', :content => "Sign up")
   end
 
-  it "should have a signin page at '/signin'" do
-    get '/signin'
-    response.should have_selector('title', :content => "Sign in")
+  it "should have a signin page at '/users/sign_in'" do
+    get '/users/sign_in'
+    response.should have_selector('h2', :content => "Sign in")
+#    response.should have_selector('title', :content => "Sign in")
   end
 
   it "should have the right links on the layout" do
@@ -63,7 +65,7 @@ describe "LayoutLinks" do
 
     it "should have a signout link" do
       visit root_path
-      response.should have_selector("a", :href => signout_path,
+      response.should have_selector("a", :href => destroy_user_session_path,
                                     :content => "Sign out")
     end
 

@@ -1,4 +1,5 @@
 <%= link_to home_logo, root_path %>
+<%= render 'shared/sign_in_index' %>
 <div class="container">
   <div class="round" id="navigation_bar">
     <div><%= link_to navigation_button("people.gif"), root_path %></div>
@@ -10,7 +11,7 @@
   <div class="round" id="gradient">
     <div class="login_box">
       <h1>Login</h1>
-      <%= render('shared/sign_in_form') %>
+      <%= render('shared/sign_up_form') %>
     </div>
     <div class="sign_up_box">
       <h1>Sign up</h1>

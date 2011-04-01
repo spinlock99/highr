@@ -1,9 +1,13 @@
 Highr::Application.routes.draw do
-
-  devise_for :users
-
   #set the root of the application to /pages/home
   root :to => 'pages#home'
+
+  resources :authentications
+  match '/auth/:provider/callback' => 'authentications#create'
+
+#  devise_for :pages, :controllers => {:home => 'home'}
+  devise_for :users, :controllers => {:registrations => 'registrations'}
+  
 
   #specify the routes for the static pages
   match '/contact', :to => 'pages#contact'
@@ -28,13 +32,13 @@ Highr::Application.routes.draw do
   end
 
   #restrict sessions controler to only handle new, create and destroy
-  resources :user_sessions, :only => [:new, :create, :destroy] 
+#  resources :user_sessions, :only => [:new, :create, :destroy] 
 
 
   #named routes
 #  match '/signup', :to => 'users#new'
-#  match '/signin', :to => 'user_sessions#new'
-#  match '/signout', :to => 'user_sessions#destroy'
+#  match '/signin', :to => 'devise/sessions#new'
+#  match '/signout', :to => 'devise/sessions#destroy'
 
   
   # testing out routes for the HVP

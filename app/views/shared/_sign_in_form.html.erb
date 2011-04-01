@@ -1,19 +1,13 @@
-<%= form_for(:user_session, :url => user_sessions_path, 
-             :html => {:id => "sign_in"}) do |f| %>
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <p><%= f.label :email %><br />
+  <%= f.email_field :email %></p>
 
-<div class="field">
-  <%= f.label :username %>
-  <%= f.text_field :username %>
-</div>
-<div class="field">
-  <%= f.label :password %>
-  <%= f.password_field :password %>
-</div>
-<div class="field">
-  <%= f.check_box :remember_me %>
-  <%= f.label :remember_me %>
-</div>
-<div class="actions">
-  <%= raw image_submit_tag("login.gif", :alt => "Login", :id => "Login") %>
-</div>
+  <p><%= f.label :password %><br />
+  <%= f.password_field :password %></p>
+
+  <% if devise_mapping.rememberable? -%>
+    <p><%= f.check_box :remember_me %> <%= f.label :remember_me %></p>
+  <% end -%>
+
+  <p><%= f.submit "Sign in" %></p>
 <% end %>

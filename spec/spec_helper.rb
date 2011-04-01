@@ -42,8 +42,8 @@ RSpec.configure do |config|
   # create a helper function to sign_in users in integration
   # tests. for some reason integration tests cannot use the controller
   def integration_sign_in(user)
-    visit signin_path
-    fill_in :username, :with => user.username
+    visit new_user_session_path
+    fill_in :email, :with => user.email
     fill_in :password, :with => user.password
     click_button
   end

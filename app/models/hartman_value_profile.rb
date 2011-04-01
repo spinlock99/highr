@@ -67,7 +67,7 @@
 
 class HartmanValueProfile < ActiveRecord::Base
   # none of the elements of this model should be editable from the web
-#  attr_accessible
+  attr_accessible
 
   # set-up user and hvp_elements associations
   belongs_to :user
@@ -75,8 +75,6 @@ class HartmanValueProfile < ActiveRecord::Base
   # enable forms for hartman value profile to show hvp_elements
   # in forms.
   accepts_nested_attributes_for :hvp_elements
-
-#  before_save :set_dim_i
 
   # validations
   validates :taken_at, :presence => true
