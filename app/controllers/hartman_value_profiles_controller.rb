@@ -1,7 +1,6 @@
 class HartmanValueProfilesController < ApplicationController
-# Devise hack
-#  before_filter :require_user
-  
+  before_filter :authenticate_user!
+
   def new
     # assign the text for the title
     @title = "New Hartman Value Profile"
@@ -23,8 +22,6 @@ class HartmanValueProfilesController < ApplicationController
         hvp_element.axiological_norm = hvp_master.axiological_norm
         hvp_element.part_id = hvp_master.part_id
         hvp_element.category_id = hvp_master.category_id
-#  this does not change the problem of sthe element not being saved.
-#        hvp_element.given_value = 1
       end
       @hvp_element.save!
     end
