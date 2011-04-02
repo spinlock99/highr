@@ -1,19 +1,20 @@
 # == Schema Information
-# Schema version: 20110321173651
+# Schema version: 20110331210031
 #
 # Table name: users
 #
-#  id                :integer         not null, primary key
-#  username          :string(255)
-#  email             :string(255)
-#  created_at        :datetime
-#  updated_at        :datetime
-#  crypted_password  :string(255)
-#  password_salt     :string(255)
-#  admin             :boolean
-#  persistence_token :string(255)
-#  oauth_token       :string(255)
-#  oauth_secret      :string(255)
+#  id                   :integer         not null, primary key
+#  email                :string(255)     default(""), not null
+#  encrypted_password   :string(128)     default(""), not null
+#  reset_password_token :string(255)
+#  remember_created_at  :datetime
+#  sign_in_count        :integer         default(0)
+#  current_sign_in_at   :datetime
+#  last_sign_in_at      :datetime
+#  current_sign_in_ip   :string(255)
+#  last_sign_in_ip      :string(255)
+#  created_at           :datetime
+#  updated_at           :datetime
 #
 
 #User model is a subclass of ActiveRecord::Base 
@@ -28,22 +29,15 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
-  # Authlogic configuration
-#  acts_as_authentic do |c|
-#  
-#    c.merge_validates_length_of_password_field_options :minimum => 6 
-#    c.merge_validates_length_of_password_field_options :maximum => 40 
-#    
-#  end
-
-#  validates :username, :presence => true,
-#                       :length => { :maximum => 50}
-
+  # Add associations to HVP and Authentications
   has_many :hartman_value_profiles
   has_many :authentications
 
-  def apply_omniauth(omniauth)
-    authentications.build(:provider => omniauth['provider'], :uid => omniauth['uid'])
+  # Build an Authentication record for the user based on the 
+  # provider and uid information gleaned by omniauth.
+  def build_authentication(omniauth)
+    authentications.build(:provider => omniauth['provider'], 
+                          :uid => omniauth['uid'])
   end
 
   def password_required?

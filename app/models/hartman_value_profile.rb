@@ -67,7 +67,9 @@
 
 class HartmanValueProfile < ActiveRecord::Base
   # none of the elements of this model should be editable from the web
-  attr_accessible
+  # BUT - if we set attr_accessible we can't calculate the HVP score.
+  # TODO - fix attr_accessible so that we can set hvp_elements from the web
+#  attr_accessible
 
   # set-up user and hvp_elements associations
   belongs_to :user
