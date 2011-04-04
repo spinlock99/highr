@@ -1,0 +1,10 @@
+module OAuth2
+  module Clients
+    class LinkedIn < Client
+      def inititlaize(client_id, client_secret, opts = {})
+        opts[:site] = 
+          super(client_id, client_secret, opts)
+      end
+    end
+  end
+end

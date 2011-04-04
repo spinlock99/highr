@@ -36,11 +36,40 @@ class User < ActiveRecord::Base
   # Build an Authentication record for the user based on the 
   # provider and uid information gleaned by omniauth.
   def build_authentication(omniauth)
+    # If the provider is Linked in, get additional information
+    # to build a user profile.
+    if omniauth['provider'] == 'linked_in'
+      self.build_linkedin(omniauth)
+    end
+
+    # now put the authentication in the database
     authentications.build(:provider => omniauth['provider'], 
                           :uid => omniauth['uid'])
+    
   end
 
   def password_required?
     (authentications.empty? || !password.blank?) && super
+  end
+
+#  def linkedin
+#    unless @linkedin
+#      @linkedin = LinkedIn::Client.new(
+#          "zpfoZeTY4UFhmGZ3s23jKbJ4ZSs4r2wwb40FwjLEuntcHdi6Tfsk19F1o1BZ1SA4", 
+#          "_T1VdwWitfALil_swkRRleOJMLZ-eZyKJSEYbYOV0wF_Ml34ZvxFo-qc6S7Y_fIB")
+#      @linkedin.authorize_from_access(omniauth['credentials']['token'],
+#                                 omniauth['credentials']['secret'])
+#    end
+#    @linkedin
+#  end
+
+protected
+
+  def build_linkedin(omniauth)
+    client = LinkedIn::Client.new(
+          "zpfoZeTY4UFhmGZ3s23jKbJ4ZSs4r2wwb40FwjLEuntcHdi6Tfsk19F1o1BZ1SA4", 
+          "_T1VdwWitfALil_swkRRleOJMLZ-eZyKJSEYbYOV0wF_Ml34ZvxFo-qc6S7Y_fIB")
+    client.authorize_from_access(omniauth['credentials']['token'],
+                                 omniauth['credentials']['secret'])    
   end
 end

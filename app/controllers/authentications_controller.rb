@@ -17,6 +17,9 @@ class AuthenticationsController < ApplicationController
   def create
     # Store authentication hash from 3rd party web service 
     omniauth = request.env['omniauth.auth']
+    logger.debug "\n\n\t omniauth \n\n"
+    logger.debug omniauth
+
     
     # Attempt to find an existing authentication in the database
     authentication = Authentication.
@@ -38,6 +41,7 @@ class AuthenticationsController < ApplicationController
 
       # build new authentication for current_user
       current_user.build_authentication(omniauth)
+
       flash[:notice] = "Authentication successful"
       # redirect to the page for managing authentications
       redirect_to authentications_url
