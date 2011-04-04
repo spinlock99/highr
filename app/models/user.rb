@@ -36,16 +36,16 @@ class User < ActiveRecord::Base
   # Build an Authentication record for the user based on the 
   # provider and uid information gleaned by omniauth.
   def build_authentication(omniauth)
+    # now put the authentication in the database
+    authentications.build(:provider => omniauth['provider'], 
+                    :uid => omniauth['uid'],
+                    :token => omniauth['credentials']['token'],
+                    :secret => omniauth['credentials']['secret'])
     # If the provider is Linked in, get additional information
     # to build a user profile.
     if omniauth['provider'] == 'linked_in'
       self.build_linkedin(omniauth)
     end
-
-    # now put the authentication in the database
-    authentications.build(:provider => omniauth['provider'], 
-                          :uid => omniauth['uid'])
-    
   end
 
   def password_required?
@@ -70,6 +70,10 @@ protected
           "zpfoZeTY4UFhmGZ3s23jKbJ4ZSs4r2wwb40FwjLEuntcHdi6Tfsk19F1o1BZ1SA4", 
           "_T1VdwWitfALil_swkRRleOJMLZ-eZyKJSEYbYOV0wF_Ml34ZvxFo-qc6S7Y_fIB")
     client.authorize_from_access(omniauth['credentials']['token'],
-                                 omniauth['credentials']['secret'])    
+                                 omniauth['credentials']['secret'])
+    self.first_name = client.profile.first_name
+    self.last_name = client.profile.last_name
+    self.picture_url = client.profile.picture_url
+    logger.debug client.profile.description
   end
 end

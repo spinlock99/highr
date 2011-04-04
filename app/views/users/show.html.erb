@@ -1,6 +1,8 @@
 <table class="profile" summary="Profile information">
   <tr>
     <td class="main">
+      <%= image_tag @user.picture_url, :id => "pic" %>
+      <h1> <%= @user.first_name %> <%= @user.last_name %></h1>
       <h1>
 	<%= gravatar_for @user %>
       </h1>
