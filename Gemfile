@@ -14,7 +14,7 @@ group :development do
       gem 'rspec-rails', '2.5.0'
       gem 'annotate-models', '1.0.4'
       # used to fill the database with fake users	
-#      gem 'faker', '0.3.1' :require => false
+      gem 'faker', '0.3.1' #:require => false
 end
 
 group :test do

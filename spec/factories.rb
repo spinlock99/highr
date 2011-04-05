@@ -30,3 +30,8 @@ Factory.define :hvp_element do |hvp_element|
   hvp_element.category_id "intrinsic"
   hvp_element.association :hartman_value_profile
 end
+
+Factory.define :micropost do |micropost|
+  micropost.content "Lorem ipsum"
+  micropost.association :user
+end

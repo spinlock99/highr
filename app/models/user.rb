@@ -1,5 +1,5 @@
 # == Schema Information
-# Schema version: 20110331210031
+# Schema version: 20110404201311
 #
 # Table name: users
 #
@@ -15,6 +15,9 @@
 #  last_sign_in_ip      :string(255)
 #  created_at           :datetime
 #  updated_at           :datetime
+#  first_name           :string(255)
+#  last_name            :string(255)
+#  picture_url          :string(255)
 #
 
 #User model is a subclass of ActiveRecord::Base 
@@ -29,9 +32,10 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
-  # Add associations to HVP and Authentications
+  # Add associations to HVP and Authentications and Microposts
   has_many :hartman_value_profiles
   has_many :authentications
+  has_many :microposts, :dependent => :destroy
 
   # Build an Authentication record for the user based on the 
   # provider and uid information gleaned by omniauth.

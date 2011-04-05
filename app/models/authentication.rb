@@ -1,4 +1,19 @@
 # == Schema Information
+# Schema version: 20110404201311
+#
+# Table name: authentications
+#
+#  id         :integer         not null, primary key
+#  user_id    :integer
+#  provider   :string(255)
+#  uid        :string(255)
+#  created_at :datetime
+#  updated_at :datetime
+#  token      :string(255)
+#  secret     :string(255)
+#
+
+# == Schema Information
 # Schema version: 20110331210031
 #
 # Table name: authentications

@@ -11,4 +11,16 @@
 #
 
 class Micropost < ActiveRecord::Base
+  # Only :content should be accessible through the web. 
+  attr_accessible :content
+
+  # Set up the association to the User model.
+  belongs_to :user
+
+  # Validations
+  validates :content, :presence => true
+  validates :user_id, :presence => true
+
+  # Return microposts in the reverse order that they were created
+  default_scope :order => 'microposts.created_at DESC'
 end
