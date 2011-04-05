@@ -74,6 +74,5 @@ protected
     self.first_name = client.profile.first_name
     self.last_name = client.profile.last_name
     self.picture_url = client.profile.picture_url
-    logger.debug client.profile.description
   end
 end
