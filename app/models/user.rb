@@ -73,7 +73,7 @@ class User < ActiveRecord::Base
   #
   # feed
   #
-  def feed
+  def team_talk
     Micropost.where("user_id = ?", id)
   end
 

@@ -150,21 +150,21 @@ describe User do
 
     end # validations
 
-    describe "status feed" do
+    describe "team talk" do
       
-      it "should have a feed" do
-        @user.should respond_to(:feed)
+      it "should have a team_talk" do
+        @user.should respond_to(:team_talk)
       end
 
       it "should include the user's microposts" do
-        @user.feed.includes(@mp1).should be_true
-        @user.feed.includes(@mp2).should be_true
+        @user.team_talk.includes(@mp1).should be_true
+        @user.team_talk.includes(@mp2).should be_true
       end
 
       it "should not include different user's microposts" do
         mp3 = Factory(:micropost, 
                       :user => Factory(:user, :email => Factory.next(:email)))
-        @user.feed.include?(mp3).should be_false
+        @user.team_talk.include?(mp3).should be_false
       end
     end # status feed
   end # micropost associations

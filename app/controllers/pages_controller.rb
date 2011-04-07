@@ -7,7 +7,8 @@ class PagesController < ApplicationController
 #      redirect_to current_user
       @user = current_user
       @micropost = Micropost.new
-      @feed_items = current_user.feed.paginate(:page => params[:page])
+      @team_talk_items = current_user.team_talk.paginate(
+                                                 :page => params[:page])
     else
       @user = User.new
 #      clean_up_passwords(build_resource)

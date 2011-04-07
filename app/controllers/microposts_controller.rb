@@ -21,7 +21,7 @@ class MicropostsController < ApplicationController
       # set @user = current_user so that our views work correctly.
       @user = current_user
       # redirect to 'pages/home' on failure
-      @feed_items = []
+      @team_talk_items = []
       render 'pages/home'
     end
   end
