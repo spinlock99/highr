@@ -23,6 +23,9 @@
 #User model is a subclass of ActiveRecord::Base 
 #and inherits all of it's methods.
 class User < ActiveRecord::Base
+  # crack is a simple json and xml parser
+  require 'crack'
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :confirmable, :lockable, 
   # :timeoutable and :omniauthable
@@ -98,6 +101,7 @@ protected
                                  omniauth['credentials']['secret'])
     self.first_name = client.profile.first_name
     self.last_name = client.profile.last_name
-    self.picture_url = client.profile.picture_url
+    @picture_url = client.profile(:fields => %w(picture-url))
+    self.picture_url = @picture_url.picture_url
   end
 end

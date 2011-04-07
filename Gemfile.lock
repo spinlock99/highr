@@ -46,6 +46,7 @@ GEM
     childprocess (0.1.8)
       ffi (~> 1.0.6)
     configuration (1.2.0)
+    crack (0.1.8)
     culerity (0.2.15)
     devise (1.2.1)
       bcrypt-ruby (~> 2.1.2)
@@ -195,6 +196,7 @@ PLATFORMS
 DEPENDENCIES
   annotate-models (= 1.0.4)
   capybara
+  crack
   devise
   factory_girl_rails (= 1.0)
   faker (= 0.3.1)

@@ -9,6 +9,7 @@ gem 'nifty-generators'
 gem 'omniauth'
 gem 'multi_json'
 gem 'linkedin'
+gem 'crack'
 
 group :development do
       gem 'rspec-rails', '2.5.0'
