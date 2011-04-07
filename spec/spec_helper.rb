@@ -43,8 +43,8 @@ RSpec.configure do |config|
   # tests. for some reason integration tests cannot use the controller
   def integration_sign_in(user)
     visit new_user_session_path
-    fill_in :email, :with => user.email
-    fill_in :password, :with => user.password
+    fill_in "Email", :with => user.email
+    fill_in "Password", :with => user.password
     click_button "Sign in"
   end
 

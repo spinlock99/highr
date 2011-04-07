@@ -31,6 +31,9 @@ Highr::Application.routes.draw do
     end
   end
 
+  # Microposts
+  resources :microposts, :only => [:create, :destroy]
+
   #restrict sessions controler to only handle new, create and destroy
 #  resources :user_sessions, :only => [:new, :create, :destroy] 
 

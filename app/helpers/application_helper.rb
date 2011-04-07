@@ -26,4 +26,10 @@ module ApplicationHelper
       "#{base_title} | #{@title}"
     end
   end
+
+  def redirect_back_or(default)
+    redirect_to :back
+  rescue ActionController::RedirectBackError
+    redirect_to default
+  end
 end

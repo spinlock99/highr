@@ -79,10 +79,12 @@ describe "Users" do
           fill_in "Confirmation", :with => "foobar"
           #push the button
           click_button "Sign Up"
+#          save_and_open_page
           #check the response
+          page.has_selector?('title', :text => 'Home').should be_true
 #          response.should have_selector("div.flash.success",
 #                                        :content => "Welcome")
-#          response.should render_template('users/show')
+#          response.should render_template('pages/home')
         #now make sure that we have incremented the number of users
         #in the database.  
         end.should change(User, :count).by(1)
@@ -104,25 +106,23 @@ describe "Users" do
     end #describe "failure"
 
     describe "success" do
-      it "should sign a user in and out" 
-# do
-#        user = Factory(:user)
-#        user.save!
-#        integration_sign_in user
-#        visit new_user_session_path
-#        within("#user_new") do
-#          fill_in "user_email", :with => "test@test.com"
-#          fill_in "user_password", :with => "testing"
-#        fill_in "Email", :with => user.email
-#        fill_in "Password", :with => user.password
-#        end
-#        click_button "Sign in"
-#        save_and_open_page
-#        page.should have_content("Signed in")
-#        controller.should be_signed_in
-#        click_link "Sign out"
-#        controller.should_not be_signed_in
-#      end
+      it "should sign a user in and out" do
+        # create a user to sign in and out
+        user = Factory.create(:user)
+        user.save!
+        # now go to the sign in page
+        visit new_user_session_path
+        fill_in "Email", :with => user.email
+        fill_in "Password", :with => user.password
+        click_button "Sign in"
+        # check that we get the page we expect for a signed in user
+        page.has_selector?('title', :text => 'Home').should be_true
+        page.should have_content("Signed in successfully")
+        # sign out
+        click_link "Sign out"
+        # check the flash message to see that we've signed out
+        page.should have_content("Signed out")
+      end
     end # describe "success"
   end # describe "sign in/out"
 end # describe "Users"

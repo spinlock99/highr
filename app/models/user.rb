@@ -67,6 +67,27 @@ class User < ActiveRecord::Base
 #    @linkedin
 #  end
 
+  #
+  # feed
+  #
+  def feed
+    Micropost.where("user_id = ?", id)
+  end
+
+  #
+  # name
+  #
+  # Return an appropriate name given that we cannot be sure that a user
+  # has set their first_name and last_name
+  def name
+    if first_name && last_name
+      name = "#{first_name} #{last_name}"
+    elsif first_name
+      name = first_name
+    else
+      name = email
+    end
+  end
 protected
 
   def build_linkedin(omniauth)
