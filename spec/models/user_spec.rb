@@ -168,4 +168,59 @@ describe User do
       end
     end # status feed
   end # micropost associations
+
+  describe "memberships" do
+    
+    before(:each) do
+      @user = User.create!(@attr)
+      @team = Factory(:team)
+    end
+
+    it "should have a memberships method" do
+      @user.should respond_to(:memberships)
+    end
+
+    it "should have a teams method" do
+      @user.should respond_to(:teams)
+    end
+
+    it "should have a member? method" do
+      @user.should respond_to(:member?)
+    end
+
+    it "should have a join! method" do
+      @user.should respond_to(:join!)
+    end
+
+    it "should join a team" do
+      @user.join!(@team)
+      @user.should be_member(@team)
+    end
+
+    it "should include the team in the teams array" do
+      @user.join!(@team)
+      @user.teams.should include(@team)
+    end
+
+    it "should have a leave! method" do
+      @user.should respond_to(:leave!)
+    end
+
+    it "should leave a team" do
+      @user.join!(@team)
+      @user.leave!(@team)
+      @user.should_not be_member(@team)
+    end
+
+    it "should have a team_mates method" do
+      @user.should respond_to(:team_mates)
+    end
+
+    it "should include a team_mate in the team_mates array" do
+      @user2 = Factory(:user)
+      @user2.join!(@team)
+      @user.join!(@team)
+      @user.team_mates.should include(@user2)
+    end
+  end # memberships
 end # describe User

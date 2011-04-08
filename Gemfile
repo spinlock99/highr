@@ -25,5 +25,6 @@ group :test do
       gem 'capybara'
       gem 'launchy'
       gem 'mocha'
+      gem 'autotest'
 end
 

@@ -40,6 +40,12 @@ class User < ActiveRecord::Base
   has_many :authentications
   has_many :microposts, :dependent => :destroy
 
+  # TODO - try to set up teams and users with the 
+  # has_and_belongs_to_man association which will not require
+  # having a membership model
+  has_many :memberships, :dependent => :destroy
+  has_many :teams, :through => :memberships
+ 
   # Build an Authentication record for the user based on the 
   # provider and uid information gleaned by omniauth.
   def build_authentication(omniauth)
@@ -71,12 +77,19 @@ class User < ActiveRecord::Base
 #  end
 
   #
-  # feed
+  # team_talk
   #
   def team_talk
     Micropost.where("user_id = ?", id)
   end
 
+  #
+  # team_mates
+  #
+  def team_mates
+    teams = Team.where(:members => id)
+    team_mates = teams.members
+  end
   #
   # name
   #
@@ -91,6 +104,34 @@ class User < ActiveRecord::Base
       name = email
     end
   end
+
+  #
+  # member?
+  #
+  # Returns true if the user is a member of the team
+  #
+  def member?(team)
+    memberships.find_by_team_id(team)
+  end
+
+  #
+  # join!
+  #
+  # Will cause the user to become a member of the given team.
+  #
+  def join!(team)
+    memberships.create!(:team_id => team.id)
+  end
+
+  #
+  # leave!
+  #
+  # Will cause the user to leave the given team.
+  #
+  def leave!(team)
+    memberships.find_by_team_id(team).destroy
+  end
+
 protected
 
   def build_linkedin(omniauth)
