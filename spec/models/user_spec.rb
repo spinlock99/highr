@@ -216,11 +216,15 @@ describe User do
       @user.should respond_to(:team_mates)
     end
 
-    it "should include a team_mate in the team_mates array" do
+    it "should include a team mate in the team_mates array" do
       @user2 = Factory(:user)
       @user2.join!(@team)
       @user.join!(@team)
       @user.team_mates.should include(@user2)
+    end
+
+    it "should not include the current user in the team_mates array" do
+      @user.team_mates.should_not include(@user)
     end
   end # memberships
 end # describe User
