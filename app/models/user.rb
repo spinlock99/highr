@@ -86,10 +86,14 @@ class User < ActiveRecord::Base
   #
   # team_mates
   #
+  # Returns all users that are on teams with the current_user
   def team_mates
-    teams = Team.where(:members => id)
-    team_mates = teams.members
+    User.joins(:memberships).
+      where('memberships.team_id' => team_ids).
+      where(['users.id != ?', self.id]).
+      select('distinct users.*')
   end
+
   #
   # name
   #
