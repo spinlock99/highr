@@ -19,7 +19,11 @@ Highr::Application.routes.draw do
   # enables GET request on /users to work 
   # (i.e. /users/1 will return the user record 
   # in the database with :id = 1)
-  resources :users
+  resources :users do
+    member do
+      get :team_mates
+    end
+  end
 
   # resources for hartman value profile
   resources :hartman_value_profiles do
