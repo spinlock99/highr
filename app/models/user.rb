@@ -35,14 +35,11 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
 
-  # Add associations to HVP and Authentications and Microposts
+  # Add associations to HVP and Authentications
   has_many :hartman_value_profiles
   has_many :authentications
   has_many :microposts, :dependent => :destroy
 
-  # TODO - try to set up teams and users with the 
-  # has_and_belongs_to_man association which will not require
-  # having a membership model
   has_many :memberships, :dependent => :destroy
   has_many :teams, :through => :memberships
  
@@ -80,7 +77,8 @@ class User < ActiveRecord::Base
   # team_talk
   #
   def team_talk
-    Micropost.where("user_id = ?", id)
+#    Micropost.where("user_id = ?", id)
+    Micropost.where('user_id' => team_mates)
   end
 
   #
@@ -109,6 +107,13 @@ class User < ActiveRecord::Base
     end
   end
 
+  def picture
+    if picture_url
+      picture = picture_url
+    else
+      picture = "http://lorempixum.com/200/200/people"
+    end
+  end
   #
   # member?
   #

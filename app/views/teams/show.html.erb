@@ -1,0 +1,18 @@
+<table class="team" summary="Team information">
+  <h1><%= @team.name %></h1>
+  <%= @team.mission %>
+  <tr>
+    <td class="sidebar round">
+      <% unless @users.empty? %>
+        <ul class="users">
+	  <%= render @users %>
+        </ul>
+      <% end %>
+    </td>
+    <td class="main">
+      <h2>Team Talk</h2>
+      <%= render 'shared/micropost_form' %>
+      <%= render 'shared/team_talk' %>
+    </td>
+  </tr>
+</table>

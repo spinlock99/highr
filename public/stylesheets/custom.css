@@ -75,7 +75,7 @@
 
 div.field, div.actions {
     margin-bottom: 0px;
-    text-align: right;
+/*    text-align: right;*/
 }
 
 body {
@@ -239,12 +239,12 @@ td.sidebar {
     padding: 2px; 
     background-color: red;
 /*    display: table; */
-    text-align: right;
+/*    text-align: right;*/
 }
 
 .field_with_errors label {
     color: #fff;
-    text-align: right;
+/*    text-align: right;*/
 }
 
 #error_explanation {

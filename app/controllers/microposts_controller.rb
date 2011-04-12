@@ -10,13 +10,19 @@ class MicropostsController < ApplicationController
   # on success and 'pages/home' on failure.
   #
   def create
+    logger.debug "\n\n\t params[:micropost] \n"
+    logger.debug params[:micropost]
+    logger.debug "\n\n\t current_user \n"
+    logger.debug current_user
+#    logger.debug "\n\n\t current_team \n"
+#    logger.debug current_user.current_team
     # build micropost from passed in parameters
     @micropost = current_user.microposts.build(params[:micropost])
     # save the micropost
     if @micropost.save
-      # redirect to root path on success
+      # redirect back on success
       flash[:success] = "Micropost created!"
-      redirect_to root_path
+      redirect_back_or root_path
     else
       # set @user = current_user so that our views work correctly.
       @user = current_user

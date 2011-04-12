@@ -48,7 +48,8 @@ class UsersController < ApplicationController
   end
   
   def show
-    @user = current_user
+#    @user = current_user
+    @user = User.find(params[:id])
     @microposts = @user.microposts.paginate(:page => params[:page])
 # Devise Hack
 #    @title = @user.username
@@ -80,6 +81,18 @@ class UsersController < ApplicationController
     User.find(params[:id]).destroy
     flash[:success] = "User destroyed."
     redirect_to users_path
+  end
+
+  #
+  # teams
+  #
+  # Show the teams that the user belongs to.
+  #
+  def teams
+    @title = "Teams"
+    @user = User.find(params[:id])
+    @teams = @user.teams
+    render 'show_teams'
   end
 
   # begin private methods

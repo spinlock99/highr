@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110407204823) do
+ActiveRecord::Schema.define(:version => 20110411223921) do
 
   create_table "access_tokens", :force => true do |t|
     t.integer  "user_id"
@@ -137,6 +137,7 @@ ActiveRecord::Schema.define(:version => 20110407204823) do
     t.integer  "user_id"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.integer  "team_id"
   end
 
   add_index "microposts", ["user_id"], :name => "index_microposts_on_user_id"
@@ -173,6 +174,7 @@ ActiveRecord::Schema.define(:version => 20110407204823) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "picture_url"
+    t.integer  "current_team_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true

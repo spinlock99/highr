@@ -22,8 +22,12 @@ Highr::Application.routes.draw do
   resources :users do
     member do
       get :team_mates
+      get :teams
     end
   end
+
+  # enable routs for teams
+  resources :teams
 
   # resources for hartman value profile
   resources :hartman_value_profiles do

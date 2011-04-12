@@ -371,4 +371,31 @@ describe UsersController do
 #      end
 #    end
   end # describe "DELETE 'destroy'"
+
+  describe "teams page" do
+    describe "when not signed in" do
+
+      it "should protect 'teams'" do
+        get :teams, :id => 1
+        response.should redirect_to(new_user_session_path)
+      end
+
+    end # when not signed in
+
+    describe "when signed in" do
+
+      before(:each) do
+        @user = Factory(:user)
+        sign_in @user
+        @team = Factory(:team)
+        @user.join!(@team)
+      end
+
+      it "should show user's teams" do
+        get :teams, :id => @user
+        response.should have_selector("a", :href => team_path(@team),
+                                           :content => @teams.name)
+      end
+    end # when signed in
+  end # teams page
 end # describe UsersController

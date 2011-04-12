@@ -2,7 +2,7 @@
   <tr>
     <td class="main">
       <% if @user.first_name && @user.last_name %>
-        <%= image_tag @user.picture_url, :id => "pic" %>
+        <%= image_tag @user.picture, :id => "pic" %>
         <h1> <%= @user.first_name %> <%= @user.last_name %></h1>
       <% end %>
       <h1>
