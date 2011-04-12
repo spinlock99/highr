@@ -10,7 +10,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20110411223921) do
+ActiveRecord::Schema.define(:version => 20110411220555) do
 
   create_table "access_tokens", :force => true do |t|
     t.integer  "user_id"
@@ -174,7 +174,6 @@ ActiveRecord::Schema.define(:version => 20110411223921) do
     t.string   "first_name"
     t.string   "last_name"
     t.string   "picture_url"
-    t.integer  "current_team_id"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
