@@ -1,0 +1,18 @@
+<div class="container">
+  <h1>Create a Team</h1>
+  <div>
+    <%= form_for @team do |team| %>
+    <bold>Name</bold>
+    <div class="field">
+      <%= team.text_field :name %>
+    </div>
+    <bold>Mission</bold>
+    <div class="field">
+      <%= team.text_area :mission %>
+    </div>
+    <div class="actions">
+      <%= team.submit "Create" %>
+    </div>
+    <% end %>
+  </div>
+</div>

@@ -6,8 +6,7 @@
     <ul>
       <li>DIF: <%= @user.hartman_value_profiles.first.dif_v %></li>
       <li>DIM: <%= @user.hartman_value_profiles.first.dim_v %></li>
-      <li>DIM%: <%= sprintf("%.1f", 
-		    @user.hartman_value_profiles.first.dim_percent_v) %></li>
+      <li>DIM%: <%= @user.hartman_value_profiles.first.dim_percent_v %></li>
       <li>DIM-I: <%= @user.hartman_value_profiles.first.dim_i_v %></li>
       <li>DIM-E: <%= @user.hartman_value_profiles.first.dim_e_v %></li>
       <li>DIM-S: <%= @user.hartman_value_profiles.first.dim_s_v %></li>
@@ -15,8 +14,7 @@
     <ul>
       <li>INT: <%= @user.hartman_value_profiles.first.int_v %></li>
       <li>DI: <%= @user.hartman_value_profiles.first.di_v %></li>
-      <li>INT%: <%= sprintf("%.1f",
-		    @user.hartman_value_profiles.first.int_percent_v) %></li>
+      <li>INT%: <%= @user.hartman_value_profiles.first.int_percent_v %></li>
       <li>INT-I: <%= @user.hartman_value_profiles.first.int_i_v %></li>
       <li>INT-E: <%= @user.hartman_value_profiles.first.int_e_v %></li>
       <li>INT-S: <%= @user.hartman_value_profiles.first.int_s_v %></li>
@@ -49,8 +47,7 @@
           <%= @user.hartman_value_profiles.first.negative_s_v %></li>
     </ul>
     <ul>
-      <li>AI%: <%= sprintf("%.1f", 
-		   @user.hartman_value_profiles.first.ai_percent_v) %></li>
+      <li>AI%: <%= @user.hartman_value_profiles.first.ai_percent_v %></li>
     </ul>
   </div>
   <div class="hartman_scores">
@@ -58,8 +55,7 @@
     <ul>
       <li>DIF: <%= @user.hartman_value_profiles.first.dif_s %></li>
       <li>DIM: <%= @user.hartman_value_profiles.first.dim_s %></li>
-      <li>DIM%: <%= sprintf("%.1f",
-		    @user.hartman_value_profiles.first.dim_percent_s) %></li>
+      <li>DIM%: <%= @user.hartman_value_profiles.first.dim_percent_s %></li>
       <li>DIM-I: <%= @user.hartman_value_profiles.first.dim_i_s %></li>
       <li>DIM-E: <%= @user.hartman_value_profiles.first.dim_e_s %></li>
       <li>DIM-S: <%= @user.hartman_value_profiles.first.dim_s_s %></li>
@@ -67,8 +63,7 @@
     <ul>
       <li>INT: <%= @user.hartman_value_profiles.first.int_s %></li>
       <li>DI: <%= @user.hartman_value_profiles.first.di_s %></li>
-      <li>INT%: <%= sprintf("%.1f",
-		    @user.hartman_value_profiles.first.int_percent_s) %></li>
+      <li>INT%: <%= @user.hartman_value_profiles.first.int_percent_s %></li>
       <li>INT-I: <%= @user.hartman_value_profiles.first.int_i_s %></li>
       <li>INT-E: <%= @user.hartman_value_profiles.first.int_e_s %></li>
       <li>INT-S: <%= @user.hartman_value_profiles.first.int_s_s %></li>
@@ -101,28 +96,20 @@
           <%= @user.hartman_value_profiles.first.negative_s_s %></li>
     </ul>
     <ul>
-      <li>AI%: <%= sprintf("%.1f",
-		   @user.hartman_value_profiles.first.ai_percent_s) %></li>
+      <li>AI%: <%= @user.hartman_value_profiles.first.ai_percent_s %></li>
     </ul>
   </div>
   <div class="hartman_scores">
     <h2>Integration</h2>
     <ul>
       <li>DIF1/DIF2: 
-        <%= sprintf("%.1f",
-	    @user.hartman_value_profiles.first.dif1_over_dif2) %></li>
-      <li>BQr1: <%= sprintf("%.1f",
-		    @user.hartman_value_profiles.first.bqr1) %></li>
-      <li>BQa1: <%= sprintf("%.1f",
-		    @user.hartman_value_profiles.first.bqa1) %></li>
-      <li>BQr2: <%= sprintf("%.1f",
-		    @user.hartman_value_profiles.first.bqr2) %></li>
-      <li>BQa2: <%= sprintf("%.1f",
-		    @user.hartman_value_profiles.first.bqa2) %></li>
-      <li>CQ1: <%= sprintf("%.1f",
-		   @user.hartman_value_profiles.first.cq1) %></li>
-      <li>CQ2: <%= sprintf("%.1f",
-		   @user.hartman_value_profiles.first.cq2) %></li>
+        <%= @user.hartman_value_profiles.first.dif1_over_dif2 %></li>
+      <li>BQr1: <%= @user.hartman_value_profiles.first.bqr1 %></li>
+      <li>BQa1: <%= @user.hartman_value_profiles.first.bqa1 %></li>
+      <li>BQr2: <%= @user.hartman_value_profiles.first.bqr2 %></li>
+      <li>BQa2: <%= @user.hartman_value_profiles.first.bqa2 %></li>
+      <li>CQ1: <%= @user.hartman_value_profiles.first.cq1 %></li>
+      <li>CQ2: <%= @user.hartman_value_profiles.first.cq2 %></li>
     </ul>
   </div>
 <% end %>

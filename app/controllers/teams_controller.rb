@@ -1,5 +1,33 @@
 class TeamsController < ApplicationController
+
+  #
+  # new
+  #
+  # Show the user a for to make a new team
+  #
+  def new
+    @title = "Create a Team"
+    @team = Team.new
+  end
   
+  #
+  # create
+  #
+  # Create a new team from the fields passed in from the new form.
+  #
+  def create
+    @team = Team.new(params[:team])
+    if @team.save
+      # the current user should join the team
+      current_user.join!(@team)
+      flash[:success] = "New team created"
+      redirect_to @team
+    else
+      @title = "Create a Team"
+      render :action => :new
+    end
+  end
+
   #
   # show
   #
