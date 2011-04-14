@@ -5,9 +5,9 @@
   <%= @team.mission %>
   <tr>
     <td class="sidebar round">
-      <% unless @users.empty? %>
+      <% unless @members.empty? %>
         <ul class="users">
-	  <%= render @users %>
+	  <%= render @members %>
         </ul>
       <% end %>
     </td>
@@ -16,6 +16,7 @@
 	<ul>
 	  <li><a href="#team_talk">Team Talk</a></li>
 	  <li><a href="#add_team_mates">Add Team Mates</a></li>
+	  <li><a href="#test_form">Test Form</a></li>
 	</ul>
 	<div id="team_talk">
 	  <h2>Team Talk</h2>
@@ -23,7 +24,16 @@
 	  <%= render 'shared/team_talk' %>
 	</div>
 	<div id="add_team_mates">
-	  Sucka
+	  <%= will_paginate @users %>
+	  <ul class="users">
+	    <%= check_box_tag( "add", "yes") %>	    
+	    <%= render @users %>
+	  </ul>
+ 	</div>
+	<div id="test_form">
+	  <p>
+	    Don't work yet.
+	  </p>
 	</div>
       </div>
     </td>

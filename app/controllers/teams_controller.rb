@@ -35,7 +35,7 @@ class TeamsController < ApplicationController
   #
   def show
     @team = Team.find(params[:id])
-    @users = @team.members
+    @members = @team.members
     @title = @team.name
     @micropost = Micropost.new
     @team_talk_items = @team.team_talk.paginate(:page => params[:page])
@@ -44,5 +44,6 @@ class TeamsController < ApplicationController
 #    @user.current_team = @team
 #    @user.save!
     session[:team_id] = @team_id
+    @users = User.paginate(:page => params[:page])
   end
 end
