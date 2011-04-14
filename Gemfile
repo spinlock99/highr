@@ -10,6 +10,7 @@ gem 'omniauth'
 gem 'multi_json'
 gem 'linkedin'
 gem 'crack'
+gem 'jquery-rails', '0.2.7'
 
 group :development do
       gem 'rspec-rails', '2.5.0'

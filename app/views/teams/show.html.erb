@@ -1,3 +1,5 @@
+<script>
+</script>
 <table class="team" summary="Team information">
   <h1><%= @team.name %></h1>
   <%= @team.mission %>
@@ -8,12 +10,22 @@
 	  <%= render @users %>
         </ul>
       <% end %>
-      <%= link_to "Invite Team Mates to Join this Team", root_path %>
     </td>
     <td class="main">
-      <h2>Team Talk</h2>
-      <%= render 'shared/micropost_form' %>
-      <%= render 'shared/team_talk' %>
+      <div id="team_tabs">
+	<ul>
+	  <li><a href="#team_talk">Team Talk</a></li>
+	  <li><a href="#add_team_mates">Add Team Mates</a></li>
+	</ul>
+	<div id="team_talk">
+	  <h2>Team Talk</h2>
+	  <%= render 'shared/micropost_form' %>
+	  <%= render 'shared/team_talk' %>
+	</div>
+	<div id="add_team_mates">
+	  Sucka
+	</div>
+      </div>
     </td>
   </tr>
 </table>
