@@ -28,6 +28,7 @@ Highr::Application.routes.draw do
 
   # enable routs for teams
   resources :teams
+  match '/teams/:id' => 'teams#add_team_mates'
 
   # resources for hartman value profile
   resources :hartman_value_profiles do

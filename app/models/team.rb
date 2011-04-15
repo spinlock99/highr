@@ -11,4 +11,19 @@ class Team < ActiveRecord::Base
   def team_talk
     Micropost.where("team_id = ?", id)
   end
+
+  #
+  # invite
+  #
+  # allows one user to invite another user to join their team.
+  #
+  def invite(current_user, user)
+    # create a micropost so that the team can see that a new member has
+    # been invited to join.
+    @micropost = current_user.microposts.create(:team_id => self.id,
+                     :content => "invited #{user.name} to join #{self.name}")
+    @micropost.save!
+    # now, create an invitation that the new member can accept
+    
+  end
 end

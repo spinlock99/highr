@@ -16,7 +16,6 @@
 	<ul>
 	  <li><a href="#team_talk">Team Talk</a></li>
 	  <li><a href="#add_team_mates">Add Team Mates</a></li>
-	  <li><a href="#test_form">Test Form</a></li>
 	</ul>
 	<div id="team_talk">
 	  <h2>Team Talk</h2>
@@ -24,17 +23,20 @@
 	  <%= render 'shared/team_talk' %>
 	</div>
 	<div id="add_team_mates">
+	  <%= form_tag do %>
 	  <%= will_paginate @users %>
 	  <ul class="users">
-	    <%= check_box_tag( "add", "yes") %>	    
-	    <%= render @users %>
+	    <% @users.each do |user| %>
+  	    <li>
+	      <%= gravatar_for user, :size => 30 %>
+	      <%= link_to user.name, user %>
+	      <%= check_box_tag("add[]", user.id) %>	    
+	    </li>
+	    <% end %>
 	  </ul>
+	  <%= submit_tag "Add Team Mates", :action => "add_team_mates" %>
+	  <% end %>
  	</div>
-	<div id="test_form">
-	  <p>
-	    Don't work yet.
-	  </p>
-	</div>
       </div>
     </td>
   </tr>

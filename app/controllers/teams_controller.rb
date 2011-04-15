@@ -46,4 +46,19 @@ class TeamsController < ApplicationController
     session[:team_id] = @team_id
     @users = User.paginate(:page => params[:page])
   end
+
+  #
+  # add_team_mates
+  #
+  # add the user_ids from the params to the team.
+  #
+  def add_team_mates
+    @team = Team.find(params[:id])
+    @users = User.find(params[:add])
+    @users.each do |user|
+      @team.invite(current_user, user)
+    end
+    flash[:success] = "Invitations sent"
+    redirect_back_or root_path
+  end
 end
