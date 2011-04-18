@@ -8,25 +8,15 @@
       <td class="sidebar round">
 	<%= render 'shared/user_info' %>
 	<%= render 'shared/stats' %>
+	<%= link_to "Manage Authentication Accounts", authentications_path %>
       </td>
     </tr>
   </table>
 <% else %>
   <%= link_to home_logo, root_path %>
   <%= render 'shared/sign_in_index' %>
-  <p><strong>Or, create an account:</strong></p>
-  <div class="container">
-    <div class="round" id="home_page_shadow">
-      <div class="round" id="gradient">
-        <div class="login_box">
-          <h1>Login</h1>
-          <%= render('shared/sign_up_form') %>
-        </div>
-        <div class="sign_up_box">
-          <h1>Sign up</h1>
-          <%= render('shared/sign_up_form') %>
-        </div>
-      </div>
-    </div>
-  </div>
+  <p><strong>Don't user these services? 
+      <%= link_to "Sign in", user_session_path %> or
+      <%= link_to "Sign up", new_user_session_path %> with a local account.
+  </strong></p>
 <% end %>
