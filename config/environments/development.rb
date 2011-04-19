@@ -14,15 +14,33 @@ Highr::Application.configure do
   config.action_view.debug_rjs             = true
   config.action_controller.perform_caching = false
 
-  # Don't care if the mailer can't send
-  config.action_mailer.raise_delivery_errors = false
-
   # Print deprecation notices to the Rails logger
   config.active_support.deprecation = :log
 
   # Only use best-standards-support built into browsers
   config.action_dispatch.best_standards_support = :builtin
 
-  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+#  config.action_mailer.default_url_options = { :host => 'localhost:3000' }
+  config.action_mailer.default_url_options = { :host => '0.0.0.0:3000' }
+
+  # Do care if the mailer can't send
+  config.action_mailer.raise_delivery_errors = true
+
+  # set-up action_mailer to send emails through mail.atomicbroadcast.net
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+
+#  require 'tlsmail'
+  Net::SMTP.enable_tls(OpenSSL::SSL::VERIFY_NONE)
+
+  config.action_mailer.smtp_settings = {
+    :address => "mail.atomicbroadcast.net",
+    :port => 25,
+    :domain => "atomicbroadcast.net",
+    :user_name => "support@atomicbroadcast.net",
+    :password => "AB!@1110tast",
+    :authentication => :plain,
+    :enable_starttls_auto => true
+  }
 end
 
