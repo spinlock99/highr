@@ -13,10 +13,5 @@
     </tr>
   </table>
 <% else %>
-  <%= link_to home_logo, root_path %>
-  <%= render 'shared/sign_in_index' %>
-  <p><strong>Don't user these services? 
-      <%= link_to "Sign in", user_session_path %> or
-      <%= link_to "Sign up", new_user_session_path %> with a local account.
-  </strong></p>
+  <%= render 'shared/landever1' %>
 <% end %>

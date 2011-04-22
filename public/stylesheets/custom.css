@@ -8,8 +8,15 @@
  *    width: 1024px;
  *
  *   margin: 1em;
+ *
+ *    padding: 1em;
+ *
+ * Adapted container so that it has the same style as outer-wrapper from 
+ * landever
  */
-    padding: 1em;
+    width:960px;
+    margin:0 auto;
+    overflow:hidden;
 }
 
 #navigation_bar {
@@ -398,6 +405,12 @@ ul.users {
     margin-bottom: 10px;
 }
 
+.call_to_action img {
+    vertical-align:center;
+}
+.call_to_action strong {
+    font-size:32px;
+}
 /* 
  * Microposts
  */

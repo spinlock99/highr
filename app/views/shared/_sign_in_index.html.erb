@@ -13,13 +13,19 @@
       <div class="clear"></div>
     </div>
   <% end %>
+  <div class="auth_provider">
   <p><strong>Add another service to sign in with:</strong></p>
 <% else %>
-  <p><strong>Sign in through one of these services:</strong></p>
+  <div class="call_to_action">
+  <strong>
+    Sign in through one of these services:
+  </strong>
 <% end %>
 
-<a href="/auth/linked_in" class="auth_provider">
-  <%= image_tag "linked_in_64.png", :size => "64x64", :alt => "LinkedIn" %>
-  LinkedIn
-</a>
+  <a href="/auth/linked_in" >
+    <%= image_tag "linked_in_64.png", :size => "64x64", :alt => "LinkedIn" %>
+  </a>
+
+  </div>
+
 <div class="clear"></div>
