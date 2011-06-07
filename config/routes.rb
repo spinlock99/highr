@@ -6,8 +6,10 @@ Highr::Application.routes.draw do
   match '/auth/:provider/callback' => 'authentications#create'
 
 #  devise_for :pages, :controllers => {:home => 'home'}
-  devise_for :users, :controllers => {:registrations => 'registrations'}
-  
+#  devise_for :users, :controllers => {:registrations => 'registrations'}
+  devise_for :users, :controllers => 
+    {:registrations => 'registrations', :invitations => 'invitations'}
+#  devise_for :users, :controllers => {:invitations => 'invitations'}
 
   #specify the routes for the static pages
   match '/contact', :to => 'pages#contact'

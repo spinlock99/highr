@@ -1,0 +1,22 @@
+<h2>Send invitation</h2>
+
+<%= form_for resource, :as => resource_name, :url => invitation_path(resource_name) do |f| %>
+  <%= devise_error_messages! %>
+
+  <p><%= f.label :email %><br />
+  <%= f.text_field :email %></p>
+
+  <h2> Which Teams will they Join?</h2>
+  <ul class="teams">
+    <% @teams.each do |team| %>
+    <li>
+      <%= check_box_tag("team[]", team.id) %>
+      <%= team.name %>
+    </li>
+    <% end %>
+  </ul>
+  
+  <p><%= f.submit "Send an invitation" %></p>
+<% end %>
+
+<%= link_to "Home", after_sign_in_path_for(resource_name) %><br />
