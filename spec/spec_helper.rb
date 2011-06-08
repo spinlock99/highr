@@ -52,4 +52,7 @@ RSpec.configure do |config|
 #  Webrat.configure do |config|
 #    config.mode = :rack
 #  end
+
+  # Devise configuration
+  config.include Devise::TestHelpers, :type => :controller
 end

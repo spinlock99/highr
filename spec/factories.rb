@@ -7,6 +7,10 @@ Factory.define :user, :class => User do |user|
 #  user.sequence(:persistence_token) {|n| "#{Authlogic::Random.hex_token}"}
 end
 
+Factory.define :team, :class => Team do |team|
+  team.sequence(:name) {|n| "team#{n}"} 
+end
+
 Factory.define :invalid_user, :class => User do |user|
 end
 
@@ -36,7 +40,4 @@ Factory.define :micropost do |micropost|
   micropost.association :user
 end
 
-Factory.define :team do |team|
-  team.name "A-Team"
-  team.mission "If you can find them, and if no one else can help, maybe you can hire ... the A-Team."
-end
+

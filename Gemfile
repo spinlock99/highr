@@ -12,7 +12,7 @@ gem 'multi_json', '0.0.5'
 gem 'linkedin', '0.2.2'
 gem 'crack', '0.1.8'
 gem 'jquery-rails', '0.2.7'
-gem 'tlsmail', '0.0.1'
+gem 'tlsmail'#, '0.0.1'
 
 group :development do
       gem 'rspec-rails', '2.5.0'
