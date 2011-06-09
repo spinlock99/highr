@@ -32,6 +32,7 @@ Factory.define :hvp_element do |hvp_element|
   hvp_element.given_value 1
   hvp_element.part_id "self"
   hvp_element.category_id "intrinsic"
+  hvp_element.phrase "A baby"
   hvp_element.association :hartman_value_profile
 end
 

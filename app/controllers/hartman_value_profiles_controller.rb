@@ -14,8 +14,8 @@ class HartmanValueProfilesController < ApplicationController
     @hvp = current_user.hartman_value_profiles.create do |hvp|
       hvp.taken_at = DateTime.now
     end
-    # get the questions for part1
-    @hvp_masters = HvpMaster.where("part_id = 'world'")
+    # get the questions from the db
+    @hvp_masters = HvpMaster.all
     @hvp_masters.each do |hvp_master|
       @hvp_element = @hvp.hvp_elements.create do |hvp_element|
         hvp_element.phrase = hvp_master.phrase
@@ -44,18 +44,6 @@ class HartmanValueProfilesController < ApplicationController
     # save the results from part1
     @hvp = HartmanValueProfile.find_by_id(session[:hvp_id])
     @hvp.update_attributes(params[:hartman_value_profile])
-    
-    # set up the questions for part2
-    @hvp_masters = HvpMaster.where("part_id = 'self'")
-    @hvp_masters.each do |hvp_master|
-      @hvp_element = @hvp.hvp_elements.create do |hvp_element|
-        hvp_element.phrase = hvp_master.phrase
-        hvp_element.axiological_norm = hvp_master.axiological_norm
-        hvp_element.part_id = hvp_master.part_id
-        hvp_element.category_id = hvp_master.category_id
-      end
-      @hvp_element.save!
-    end
     if @hvp.save
       session[:hvp_id] = @hvp.id
       flash[:success] = "Part 2"
