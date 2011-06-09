@@ -66,12 +66,16 @@ describe HartmanValueProfilesController do
   end # "GET 'new'"
 
   describe "GET 'get_part1'" do
+
     before(:each) do
       @user = Factory(:user)
+      @user.save!
       sign_in @user
       @hvp = @user.hartman_value_profiles.create! do |hvp|
         hvp.taken_at = DateTime.now
       end
+      # save the hvp so that the phrases will show up in our tests.
+      @hvp.save!
       session[:hvp_id] = @hvp.id
     end
 
@@ -80,9 +84,64 @@ describe HartmanValueProfilesController do
       response.should be_success
     end
 
-    it "should have the right title" 
+    it "should have the right title" do
+      get 'get_part1', :id => @hvp
+      response.should have_selector("title",
+                                    :content => "Part 1")
+    end
 
-    it "should have 18 phrases"
+    it "should have a flash message" do
+      post :create
+      flash[:success].should =~ /Part 1/i
+    end
+
+    describe "should have the following 18 phrases: " do
+      
+      it "A good meal" do
+#        get 'get_part1', :id => @hvp
+        post :create
+        response.should have_selector("body",
+                                      :content => "A good meal")
+      end
+
+      it "A technical improvement" do
+        get 'get_part1', :id => @hvp
+        response.should have_selector("form",
+                                      :content => "A technical improvement")
+      end
+
+      it "Nonsese"
+      
+      it "A fine"
+
+      it "A rubbish heap"
+
+      it "A devoted scientist"
+
+      it "Blow up an airliner in flight"
+
+      it "Burn a witch at the stake"
+
+      it "A short circuit"
+
+      it '"With this ring I thee wed."'
+
+      it "A baby"
+
+      it "Torture a person in a concentration camp"
+
+      it "Love of Nature"
+
+      it "A madman"
+
+      it "An assembly line"
+
+      it "Slavery"
+
+      it "A mathematical genius"
+
+      it "A uniform"
+    end # 18 phrases
   end # "GET 'get_part1'"
 
   describe "GET 'get_part2'" do

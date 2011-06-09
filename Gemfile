@@ -28,6 +28,11 @@ group :test do
       gem 'capybara'
       gem 'launchy'
       gem 'mocha'
-      gem 'autotest'
+      gem 'autotest', '4.4.6'
+      gem 'autotest-rails-pure', '4.1.2'
+      gem 'autotest-notification'
+#      gem 'zentest'
+      gem 'redgreen'
+      gem 'test-unit'
 end
 
