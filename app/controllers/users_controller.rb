@@ -1,27 +1,19 @@
 class UsersController < ApplicationController
   # tell the controller to run the require_no_user method before
   # executing the new or create methods
-# Devise Hack
-#  before_filter :require_no_user, :only => [:new, :create]
+  before_filter :require_no_user, :only => [:new, :create]
   
-  # tell the controller to run the :require_user method before
-  # the show, and index functions
-# Devise Hack
-#  before_filter :require_user, :only => [:edit, :update, :index, 
-#                                         :show, :destroy]
-  
-  # make sure we have the correct user before allowing an edit or update
-# Devise Hack
-#  before_filter :correct_user, :only => [:edit, :update]
-
-  # restrict destroy to admins only
-# Devise Hack
-#  before_filter :admin_user, :only => :destroy
-
-  # Devise 
+  # make sure that the user is signed in before allowing:
+  #    edit, update, index, show, destroy, and teams
   before_filter :authenticate_user!, :only => [:edit, :update, :index,
-                                               :show, :destroy]
+                                               :show, :destroy, :teams]
+  # make sure we have the correct user before allowing an edit or update
+  before_filter :correct_user, :only => [:edit, :update]
 
+  # restrict destroy to admins only 
+  # TODO: implement admin through Devise
+  #  before_filter :admin_user, :only => :destroy
+  
   def new
     # redirect a signed in user to their home page
     if current_user
@@ -103,4 +95,14 @@ class UsersController < ApplicationController
     redirect_to(root_path) unless current_user.admin?
   end
 
+  # redirect to home page unless the current user id == params[:id]
+  def correct_user
+    @user = User.find(params[:id])
+    redirect_to(root_path) unless current_user == @user
+  end
+  
+  # redirect to the home page unless there is no user signed in
+  def require_no_user
+    redirect_to(root_path) unless current_user.nil?
+  end
 end

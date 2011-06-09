@@ -46,15 +46,12 @@ describe UsersController do
       it "should deny access" do
         get :index
         response.should redirect_to(new_user_session_path)
-        #flash[:error].should =~ /sign in/i
       end
     end # describe "for non-signed-in users"
 
     describe "for signed-in users" do
       
       before(:each) do
-        # Needed to get authlogic tests to pass
-#        activate_authlogic
         # set up the user session for loged in user
         @user = Factory(:user)
         sign_in @user
@@ -184,16 +181,6 @@ describe UsersController do
         end.should change(User, :count).by(1)
       end
 
-      it "should sign the user in" #do
-#        post :create, :user => @attr
-        # @user_session = UserSession.find
-        # @user_session.user.should_not == nil
-#        @user = User.where(:email => @attr['email']).first
-#        @user.user_signed_in?.should == true
-# TODO: make sure that the user that was just created is the signed in user
-#        controller.should be_signed_in
-#      end
-
       it "should redirect to the user show page" do
         post :create, :user => @attr
         response.should redirect_to(user_path(assigns(:user)))
@@ -234,9 +221,8 @@ describe UsersController do
   describe "PUT 'update'"do
 
     before(:each) do
+      @request.env["devise.mapping"] = Devise.mappings[:user]
       @user = Factory.create(:user)
-      # @request.env['devise.mapping'] = :user
-      # @user.confirm!
       sign_in @user
     end
 
@@ -306,20 +292,20 @@ describe UsersController do
     describe "for signed-in users" do
       
       before(:each) do
-#        activate_authlogic
-#        user_session = UserSession.create 
-#            Factory(:user, :email => "user@example.net")
-#        wrong_user = user_session.user
+        @request.env["devise.mapping"] = Devise.mappings[:user]        
+        @user = Factory(:user)
+        @wrong_user = Factory(:user)
+        sign_in @user
       end
 
       it "should require matching users for 'edit'" do
-        get :edit, :id => @user
-        response.should redirect_to(new_user_session_path)
+        get :edit, :id => @wrong_user
+        response.should redirect_to(root_path)
       end
 
       it "should require matching users for 'update'" do
-        put :update, :id => @user, :user => {}
-        response.should redirect_to(new_user_session_path)
+        put :update, :id => @wrong_user, :user => {}
+        response.should redirect_to(root_path)
       end
     end # describe "for signed-in users"
   end # describe "authentication of edit/update pages"
@@ -339,8 +325,6 @@ describe UsersController do
 
     describe "as a non-admin user" do
       it "should protect the page" do
-#        activate_authlogic
-#        UserSession.create @user
         delete :destroy, :id => @user
         response.should redirect_to(new_user_session_path)
       end
@@ -376,7 +360,8 @@ describe UsersController do
     describe "when not signed in" do
 
       it "should protect 'teams'" do
-        get :teams, :id => 1
+        @user = Factory(:user)
+        get :teams, :id => @user.id
         response.should redirect_to(new_user_session_path)
       end
 
@@ -394,7 +379,7 @@ describe UsersController do
       it "should show user's teams" do
         get :teams, :id => @user
         response.should have_selector("a", :href => team_path(@team),
-                                           :content => @teams.name)
+                                           :content => @team.name)
       end
     end # when signed in
   end # teams page
