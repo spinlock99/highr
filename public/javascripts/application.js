@@ -9,7 +9,115 @@ $(document).ready(function() {
 		return false;
 	    });
     });
-
+// jquery-ui tabs magic
 $(function() {
 	$("#team_tabs").tabs();
     });
+// initial text in email field on landing page form
+$(document).ready(function(){
+	var initialText = "your@email.com";
+        $('#email').focus(function(){
+		if( $(this).val()==initialText){
+		    $(this).val("").removeClass("initial");
+		}
+	    });
+	$('#email').blur(function(){
+		if($(this).val()==""){
+		    $(this).val(initialText).addClass("initial");
+		}
+	    });
+    });
+
+// facebook recommend button
+$(function() {
+	likebutton = 
+	    '<fb:like href="" send="" width="100" show_faces="" ' +
+	    'font="" layout="button_count" action="recommend">' +
+	    '</fb:like>'
+	$.getScript('http://connect.facebook.net/en_US/all.js', function() {
+		FB.init({appId: 141936272547391, 
+			    status: true, 
+			    cookie: true, 
+			    xfbml: true
+			    });
+		$('#facebook').replaceWith(likebutton);
+	    })
+    });
+
+
+/*
+        $('#submit').hover(function(){ 
+		// Change the input image's source when we "roll on"
+		$(this).attr({ src : '/images/Submit-Button_Hover.png'});
+	    },
+	    function(){ 
+		// Change the input image's source back to the default 
+		// on "roll off"
+		$(this).attr({ src : '/images/Submit-Button.png'});
+	    });
+	*/
+   
+
+/*	
+	if (document.cookie && document.cookie != '') {
+            var cookies = document.cookie.split(';');
+            for (var i = 0; i < cookies.length; i++) {
+                var cookie = jQuery.trim(cookies[i]);
+                if (cookie.substring(0, 11) == 'user_email=') {
+                    cookieValue = decodeURIComponent(cookie.substring(11));
+                    postData(cookieValue);
+		    break;
+                }
+            }
+        }
+    });
+function postData(emailVal) {
+    $.post('postemail.php', {email: emailVal, referralid: $("#refid").val()},
+	   function(data){
+	       $("#shareurl").val(data.reflink).show();
+	       $("#twitter").html("<a href=\"http://twitter.com/share\" class=\"twitter-share-button\" data-url=\""+data.reflink+"\" data-text=\"I'm one of the first in line to build a viral &ldquo;Launching Soon&rdquo; page with #LaunchRock. Join me #launch\" data-count=\"none\" data-via=\"getlaunchrock\">Tweet</a>").show();
+	       $.getScript('http://platform.twitter.com/widgets.js',function(){
+		       return true;
+		   });
+	       
+	       $("#facebook").html('<iframe src="http://www.facebook.com/plugins/like.php?href=' + escape(data.reflink) + '&amp;layout=standard&amp;show_faces=false&amp;width=100&amp;action=recommend&amp;font=lucida+grande&amp;colorscheme=light&amp;height=25" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:25px;" allowTransparency="true"></iframe>').show();
+	       
+	       
+	       $("#emailbox").slideUp();
+	       $("#pagesubmit").slideDown();
+	       if (data.newuser) {
+		   $("#header_text").html('Thanks! Want to get an early invitation?');
+		   $("#paragraph_text").html('Invite at least 3 friends using the link below. The more friends you invite, the sooner you&#146;ll get access!');
+	       } else {
+		   $("#header_text").html('Welcome back!');
+		   $("#paragraph_text").html('<b>Your live stats: ' + data.clicks + ' clicks, ' + data.signups + ' sign ups</b><br /><br />The more friends you invite, the sooner you&#146;ll get access!');
+	       }
+	       var d = new Date();
+	       d.setFullYear(d.getFullYear() + 1);
+	       document.cookie = 'user_email=' + escape(data.email) + '; expires=' + d.toUTCString() + '
+; path=/; domain=.launchrock.com;';
+	   }, "json");
+}
+$('form').submit(function(){
+	
+	$(".error").hide();
+        var hasError = false;
+        var emailReg = /^([a-zA-Z0-9_\.\-\+])+\@(([a-zA-Z0-9\-])+\.)+([a-zA-Z0-9]{2,4})+$/;
+	
+        var emailaddressVal = $("#email").val();
+        if(emailaddressVal == '') {
+            $("#information").after('<span class="error">Please enter your email address.</span>');
+            hasError = true;
+        }
+	
+        else if(!emailReg.test(emailaddressVal) || emailaddressVal == 'your@email.com') {
+            $("#information").after('<span class="error">Enter a valid email address.</span>');
+            hasError = true;
+        }
+	
+        if (!hasError) {
+	    postData($('#email').val());
+	}
+	return false;
+    });
+	*/

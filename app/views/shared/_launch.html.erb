@@ -1,0 +1,43 @@
+<div id="logo"> 
+  <h2 id="title">
+    <%= link_to logo, root_path %>
+  </h2> 
+</div> 
+<p id="makea">
+  Bring Your World Together<br /><br />
+  <%= link_to "Lean more.", about_path %>
+</p> 
+<div id="actionbox"> 
+  <div class="pages" id="pagestart"> 
+    <div id="emailbox"> 
+      <p id="invitelist">
+	<em>Launching soon. Enter your email to join our invite list:</em>
+      </p> 
+      
+      <%= form_for @user, :html => {:id => "signupform"} do |f| %>
+      <%= render 'shared/error_messages', :object => f.object %>
+      <%= f.text_field :email, :id => "email", :value => "your@email.com" %>
+      <%= f.submit "Go" %>
+      <% end %>
+      
+      <%= # Render the sign-in buttons for supported services.
+	  # render 'shared/sign_in_index'
+	  %>
+      
+    </div><!-- emailbox --> 
+    <div class="pages hidden" id="pagesubmit"> 
+      <div id="description"> 
+	<h3 id="header_text"></h3> 
+	<p id="paragraph_text"></p> 
+	<p>To share with your friends, click &ldquo;Recommend&rdquo; and &ldquo;Tweet&rdquo;:</p>
+	<div id="fb-root"></div><div id="facebook">[Facebook]</div>
+      </div> 
+      <p class="clear" style="text-align: left;">Or copy and paste the following link to share wherever you want!</p> 
+      <input id="shareurl" type="text" value="" /> 
+      
+    </div> 
+    
+    <p id="learnmore"><a href="http://blog.launchrock.com" target="_new">our blog</a></p> 
+    <p style="text-align:left;margin-top:-10px"><a href="http://launchrock.com/login/">Login</a></p> 
+  </div> 
+</div> 

@@ -1,0 +1,57 @@
+html {
+    background: #000 url('/images/launch.jpg') no-repeat center center fixed;
+    color: #A0A0A0;
+}
+a, a:link, a:hover, a:active {
+    color: #8498AC; 
+    text-decoration: none;
+}
+
+a:hover {
+    text-decordation: underline;
+}
+
+
+body {
+    color: #A0A0A0;
+    font-family: arial, verdana, sans;
+}
+
+#invitelist {
+    font-family: Georgia, Times, serif;
+    color: #E9E9E9;
+    font-size:120%;
+    text-align: left;
+    font-size: .78em;
+}
+
+#container {
+    text-align: center;
+}
+
+#content {
+    margin: 110px auto 0 auto;
+    width: 340px;
+    background: transparent url('/images/content_bg.png') 0 0 repeat;
+    padding: 20px;
+    position: relative;
+    opacity: 0.8;
+}
+
+#content-admin {
+    margin: 110px auto 0 auto;
+    width: 500px;
+    background-color:#000;
+    /* for IE */
+    filter:alpha(opacity=80);
+    /* CSS3 standard */
+    opacity:0.8;
+    padding: 20px;
+}
+
+#content p {
+    color: #FFF;
+}
+
+
+.hidden {
