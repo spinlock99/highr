@@ -2,7 +2,7 @@ module ApplicationHelper
 
   #Define a "logo" helper function
   def logo
-    logo = image_tag("logo.png", :alt => "HighR", :class => "round")
+    logo = image_tag("logo.png", :alt => "Logo", :border => 0)
   end
 
   #Define a "homepage_logo" helper function

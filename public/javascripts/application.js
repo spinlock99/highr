@@ -27,13 +27,12 @@ $(document).ready(function(){
 		}
 	    });
     });
-
 // facebook recommend button
 $(function() {
 	likebutton = 
 	    '<fb:like href="" send="" width="100" show_faces="" ' +
 	    'font="" layout="button_count" action="recommend">' +
-	    '</fb:like>'
+	    '</fb:like>';
 	$.getScript('http://connect.facebook.net/en_US/all.js', function() {
 		FB.init({appId: 141936272547391, 
 			    status: true, 
@@ -41,8 +40,22 @@ $(function() {
 			    xfbml: true
 			    });
 		$('#facebook').replaceWith(likebutton);
-	    })
+	    });
     });
+// twitter button
+$(function() {
+	tweetbutton = 
+	    '<a href="http://twitter.com/share" class="twitter-share-button"' +
+	    ' data-text="Atomic Broadcast is the next big thing!"' +
+	    ' data-count="horizontal">Tweet</a>';
+	
+	$('#twitter').replaceWith(tweetbutton);
+	$.getScript('http://platform.twitter.com/widgets.js', function(){
+		return true;
+	    });
+    });
+
+
 
 
 /*
@@ -75,10 +88,6 @@ function postData(emailVal) {
     $.post('postemail.php', {email: emailVal, referralid: $("#refid").val()},
 	   function(data){
 	       $("#shareurl").val(data.reflink).show();
-	       $("#twitter").html("<a href=\"http://twitter.com/share\" class=\"twitter-share-button\" data-url=\""+data.reflink+"\" data-text=\"I'm one of the first in line to build a viral &ldquo;Launching Soon&rdquo; page with #LaunchRock. Join me #launch\" data-count=\"none\" data-via=\"getlaunchrock\">Tweet</a>").show();
-	       $.getScript('http://platform.twitter.com/widgets.js',function(){
-		       return true;
-		   });
 	       
 	       $("#facebook").html('<iframe src="http://www.facebook.com/plugins/like.php?href=' + escape(data.reflink) + '&amp;layout=standard&amp;show_faces=false&amp;width=100&amp;action=recommend&amp;font=lucida+grande&amp;colorscheme=light&amp;height=25" scrolling="no" frameborder="0" style="border:none; overflow:hidden; width:100px; height:25px;" allowTransparency="true"></iframe>').show();
 	       
