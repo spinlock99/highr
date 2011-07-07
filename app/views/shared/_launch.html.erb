@@ -5,37 +5,38 @@
 </div> 
 <p id="makea">
   Bring Your World Together<br /><br />
-  <%= link_to "Lean more.", about_path %>
 </p> 
 <div id="actionbox"> 
   <div class="pages" id="pagestart"> 
     <div id="emailbox"> 
       <p id="invitelist">
 	<em>Launching soon. Enter your email to join our invite list:</em>
-      </p> 
-      
+      </p>  
+     
       <%= form_for @user, :html => {:id => "signupform"} do |f| %>
       <%= render 'shared/error_messages', :object => f.object %>
       <%= f.text_field :email, :id => "email", :value => "your@email.com" %>
       <%= f.submit "Go" %>
       <% end %>
       
-      <%= # Render the sign-in buttons for supported services.
-	  # render 'shared/sign_in_index'
-	  %>
-      
     </div><!-- emailbox --> 
-    <div class="pages hidden" id="pagesubmit"> 
-      <div id="description"> 
-	<h3 id="header_text"></h3> 
-	<p id="paragraph_text"></p> 
-	<p>To share with your friends, click &ldquo;Recommend&rdquo; and &ldquo;Tweet&rdquo;:</p>
-	<div id="fb-root"></div><div id="facebook">[Facebook]</div>
-	</br></br>
-	<div id="twitter">[Twitter]</div>
-      </div><!-- description --> 
-      <p class="clear" style="text-align: left;">Or copy and paste the following link to share wherever you want!</p> 
-      <input id="shareurl" type="text" value="" /> 
-    </div><!-- pagesubmit -->     
+
+    <p><br /><%= link_to "Lean more.", about_path %></p>
+
+<%=
+#    <div class="pages hidden" id="pagesubmit"> 
+#      <div id="description"> 
+#	<h3 id="header_text"></h3> 
+#	<p id="paragraph_text"></p> 
+#	<p>To share with your friends, click &ldquo;Recommend&rdquo; and &ldquo;Tweet&rdquo;:</p>
+#	<div id="fb-root"></div><div id="facebook">[Facebook]</div>
+#	</br></br>
+#	<div id="twitter">[Twitter]</div>
+#      </div><!-- description --> 
+#      <p class="clear" style="text-align: left;">Or copy and paste the following link to share wherever you want!</p> 
+#      <input id="shareurl" type="text" value="" /> 
+#    </div><!-- pagesubmit --> 
+#
+%>    
   </div><!-- pagestart -->
 </div> <!-- actionbox -->

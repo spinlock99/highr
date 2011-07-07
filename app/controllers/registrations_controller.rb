@@ -13,6 +13,8 @@ class RegistrationsController < Devise::RegistrationsController
     # keep this information in order to store useful information
     # about the new user.
     session[:omniauth] = nil unless @user.new_record?
+
+    logger.debug "\n\t RegistrationsController#create \n\n"
   end
 
   #
@@ -21,7 +23,7 @@ class RegistrationsController < Devise::RegistrationsController
   def new
     super
     @title = "Sign up"
-    logger.debug "\n\n\t RegistrationsController#new \n\n"
+    logger.debug "\n\t RegistrationsController#new \n\n"
   end
 
   private

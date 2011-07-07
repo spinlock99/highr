@@ -19,22 +19,18 @@
     <!-- Landever Scripts -->
   </head>
   <body>
+    <div class="curtain"></div>
+    <div class="curtain" id="left"></div>
+    <div class="curtain" id="right"></div>
+    <div class="curtain"></div>
     <div id="container">
       <%= render('layouts/header') unless current_user.nil? %>
-<!--
-      <section id="inner-wrapper">
--->
-      <div id="middlebox">
-	<div id="content" style="margin:50px auto 0;"> 
+	<div id="content"> 
 	  <% flash.each do |key, value| %>
 	  <%= content_tag(:div, value, :class => "flash #{key}") %>
 	  <% end %>
 	  <%= yield %>
 	</div>
-<!--
-      </section>
--->
-      </div>
       <%= render('layouts/footer') unless current_user.nil? %>
       <%= debug(params) if Rails.env.development? %>
     </div> 
