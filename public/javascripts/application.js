@@ -1,14 +1,20 @@
 // Place your application-specific JavaScript functions and classes here
 // This file is automatically included by javascript_include_tag :defaults
-
-$(function() {
-	$("#left")
-	    //.css("background-image", "none")
-	    .stop().animate({backgroundPosition:"(-150px 0)"}, {duration:500})
+$(document).click(function() {
+	//	$("#left").hide("slide", { direction: "left" }, 1000,  function() {
+	//	$("#left").replaceWith('<div class="back-drop"></div>')
+	//	    });
+	//	$("#right").hide("slide", {direction: "right" }, 1000, function() {
+	//	$("#right").replaceWith('<div class="back-drop"></div>')
+	//  });
+	//	$("#right").replaceWith('<div class="back-drop"></div>')
+	//$("#right").animate({ width: 25%}, 1000);
+	$("#content").animate({ opacity: '1.0' }, 1000);
+	$("#left").animate({ width: '25%' }, 1000);
+	$("#center-left").animate({ width: '25%' }, 1000);
+	$("#center-right").animate({ width: '25%' }, 1000);
+	$("#right").animate({ width: '25%' }, 1000);
 	
-	    
-	//	$("#left").fadeOut(2000);
-	//	$("#right").css("background-image", "none");
     });
 // Make this available once the document is loaded
 $(document).ready(function() {
