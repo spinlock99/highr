@@ -6,6 +6,11 @@
     <%= render('layouts/stylesheets') %>
     <%= javascript_include_tag :defaults %>
     <%= javascript_include_tag 'jquery-ui' %>
+    <% if signed_in? %>
+      <%= javascript_include_tag 'signed_in' %>
+    <% else %>
+      <%= javascript_include_tag 'not_signed_in' %>
+    <% end %>
   </head>
   <body>
     <div class="curtain" id="left"></div>

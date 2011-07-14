@@ -1,11 +1,18 @@
 <% if signed_in? %>
+
+  <%= javascript_include_tag 'curtains' %>
+
   <p>To share with your friends, click &ldquo;Recommend&rdquo; and &ldquo;Tweet&rdquo;:</p>
   <div id="fb-root"></div><div id="facebook">[Facebook]</div>
   <br /><br />
   <div id="twitter">[Twitter]</div>
+  <br /><br />
   <p>Or, enter an email address below to send an invitation.</p>
+
 <% else %>
+
   <h2>Launching soon. Enter your email to join our waiting list.</h2>
+
 <% end %>
 
 <div id="emailbox">
