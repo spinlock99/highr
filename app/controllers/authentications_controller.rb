@@ -50,8 +50,9 @@ class AuthenticationsController < ApplicationController
       # is no current_user. So, we need to create a new User
       # and a new Authentication.
 
-      # Create a new User
-      user = User.new
+      # Find the invited user by the invitation_token
+      user = User.accept_invitation!(:invitation_token => session[:invitation_token])
+
       # Build a new authentication
       user.build_authentication(omniauth)
       

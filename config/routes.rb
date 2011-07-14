@@ -1,6 +1,6 @@
 Highr::Application.routes.draw do
   #set the root of the application to /pages/home
-  root :to => 'pages#home'
+#  root :to => 'pages#home'
 
   resources :authentications
   match '/auth/:provider/callback' => 'authentications#create'
@@ -8,7 +8,9 @@ Highr::Application.routes.draw do
 #  devise_for :pages, :controllers => {:home => 'home'}
 #  devise_for :users, :controllers => {:registrations => 'registrations'}
   devise_for :users, :controllers => 
-    {:registrations => 'registrations', :invitations => 'invitations'}
+    {:registrations => 'registrations', :invitations => 'invitations'} do
+    root :to => 'invitations#new'
+  end
 #  devise_for :users, :controllers => {:invitations => 'invitations'}
 
   #specify the routes for the static pages

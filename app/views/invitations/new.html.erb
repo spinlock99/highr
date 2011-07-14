@@ -1,4 +1,13 @@
-<h2>Send invitation</h2>
+<% if signed_in? %>
+  <p>To share with your friends, click &ldquo;Recommend&rdquo; and &ldquo;Tweet&rdquo;:</p>
+  <div id="fb-root"></div><div id="facebook">[Facebook]</div>
+       </br></br>
+       <div id="twitter">[Twitter]</div>
+  </div>
+  <p>Or, enter an email address below to send an invitation.</p>
+<% else %>
+  <h2>Launching soon. Enter your email to join our waiting list.</h2>
+<% end %>
 
 <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name) do |f| %>
   <%= devise_error_messages! %>
@@ -6,17 +15,5 @@
   <p><%= f.label :email %><br />
   <%= f.text_field :email %></p>
 
-  <h2> Which Teams will they Join?</h2>
-  <ul class="teams">
-    <% @teams.each do |team| %>
-    <li>
-      <%= check_box_tag("team[]", team.id) %>
-      <%= team.name %>
-    </li>
-    <% end %>
-  </ul>
-
   <p><%= f.submit "Send an invitation" %></p>
 <% end %>
-
-<%= link_to "Home", after_sign_in_path_for(resource_name) %><br />

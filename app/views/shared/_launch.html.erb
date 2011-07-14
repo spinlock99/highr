@@ -13,8 +13,8 @@
 	<em>Launching soon. Enter your email to join our invite list:</em>
       </p>  
      
-      <%= form_for @user, :html => {:id => "signupform"} do |f| %>
-      <%= render 'shared/error_messages', :object => f.object %>
+      <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name) do |f| %>
+      <%= devise_error_messages! %>
       <%= f.text_field :email, :id => "email", :value => "your@email.com" %>
       <%= f.submit "Go" %>
       <% end %>

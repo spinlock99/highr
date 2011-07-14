@@ -1,0 +1,167 @@
+html {
+/*    background: #000 url('/images/launch.jpg') no-repeat center center fixed; */
+    color: #A0A0A0;
+}
+
+.curtain {
+    background-image: url('/images/curtain3.png'), url('/images/curtain2.png'), url('/images/curtain1.jpg'); 
+/*    background-image: url('/images/curtain1.jpg'); */
+    float: left;
+    width: 50%;
+    height: 915px;
+}
+
+#right {
+    background-position: -100px, 0px;
+}
+
+.back-drop {
+    float: left;
+    width: 0%;
+    height: 915px;
+}
+
+a, a:link, a:hover, a:active {
+    color: #8498AC; 
+    text-decoration: none;
+}
+
+a:hover {
+    text-decordation: underline;
+}
+
+
+body {
+    overflow: hidden;
+/*    color: #A0A0A0; */
+    color: #E9E9E9;
+    font-family: arial, verdana, sans;
+    overflow: hidden;
+    margin: 0px;
+}
+
+#invitelist {
+    font-family: Georgia, Times, serif;
+    color: #E9E9E9;
+    font-size:120%;
+    text-align: left;
+    font-size: .78em;
+}
+
+#container {
+    text-align: center;
+    width: 960px;
+    margin: 0 auto; 
+/*    overflow: hidden; */
+    position: absolute;
+}
+
+#content {
+    margin: 110px auto 0 auto;
+    width: 340px;
+    background: transparent url('/images/content_bg.png') 0 0 repeat;
+    padding: 20px;
+    position: absolute;
+/*    position: relative;*/
+    left: 50%;
+    margin-left: -190px;
+    opacity: 0.8;
+    z-index: 10;
+}
+
+#content-admin {
+    margin: 110px auto 0 auto;
+    width: 500px;
+    background-color:#000;
+    /* for IE */
+    filter:alpha(opacity=80);
+    /* CSS3 standard */
+    opacity:0.8;
+    padding: 20px;
+}
+
+#content p {
+    color: #FFF;
+}
+
+
+.hidden {
+}
+
+.field_with_errors {
+  margin-top: 10px;
+  padding: 2px;
+  background-color: red;
+/*  display: table; */
+}
+
+.field_with_errors label {
+  color: #fff;
+}
+
+#error_explanation {
+/*  width: 400px; */
+  border: 2px solid red;
+  padding: 7px;
+  padding-bottom: 12px;
+  margin-bottom: 20px;
+  background-color: #f0f0f0;
+}
+
+#error_explanation h2 {
+  text-align: left;
+  font-weight: bold;
+  padding: 5px 5px 5px 15px;
+  font-size: 12px;
+  margin: -7px;
+  background-color: #c00;
+  color: #fff;
+}
+
+#error_explanation p {
+  color: #333;
+  margin-bottom: 0;
+  padding: 5px;
+}
+
+#error_explanation ul li {
+  font-size: 12px;
+  list-style: square;
+}
+
+/* Navigation */
+
+nav {
+    float: right;
+}
+
+nav {
+#    background-color: white;
+    padding: 0 0.7em;
+    white-space: nowrap;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+}
+
+nav ul li {
+    list-style-type: none;
+    display: inline-block;
+    padding: 0.2em 0;
+}
+
+nav ul li a {
+    padding: 0 5px;
+    font-weight: bold;
+}
+/*
+nav ul li a:visited {
+    color: #09c;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+*/
