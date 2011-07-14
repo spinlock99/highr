@@ -1,3 +1,5 @@
+<%= javascript_include_tag 'edit' %>
+
 <% if @authentications %>
   <% unless @authentications.empty? %>
     <p><strong>You can sign in to this account using:</strong></p>
@@ -19,7 +21,7 @@
   <div class="call_to_action">
   <strong>
     Sign in through one of these services:
-  </strong>
+  </strong><br />
 <% end %>
 
   <a href="/auth/linked_in" >

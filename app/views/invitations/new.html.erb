@@ -1,22 +1,26 @@
-<% if signed_in? %>
+<div id="message">
+  <% if signed_in? %><!-- signed_in? == true -->
+    
+    <%= javascript_include_tag 'signed_in' %>
 
-  <h2>Get Access Faster</h2>
+    <h2>Skip the Line!</h2>
 
-  <p>Upgrade to a full account once 3 of your friends sign up.</p>
+    <p>Click &ldquo;Recommend&rdquo; and &ldquo;Tweet&rdquo; to share with your friends. 
+      You'll get credit for every referral that you create.</p>
+    <div id="fb-root"></div><div id="facebook">[Facebook]</div>
+    <br /><br />
+    <div id="twitter">[Twitter]</div>
+    <br /><br />
+    <p>Or, enter an email address below to send an invitation.</p>
 
-  <p>To share with your friends, click &ldquo;Recommend&rdquo; and &ldquo;Tweet&rdquo;:</p>
-  <div id="fb-root"></div><div id="facebook">[Facebook]</div>
-  <br /><br />
-  <div id="twitter">[Twitter]</div>
-  <br /><br />
-  <p>Or, enter an email address below to send an invitation.</p>
+ <% else %><!-- signed_in? == false -->
 
-<% else %>
+   <%= javascript_include_tag 'not_signed_in' %>
 
-  <h2>Launching soon. Enter your email to join our waiting list.</h2>
+   <h2>Launching soon. Enter your email to join our waiting list.</h2>
 
-<% end %>
-
+ <% end %><!-- end signed_in? -->
+</div><!-- message -->
 <div id="emailbox">
   <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name) do |f| %>
   <%= devise_error_messages! %>

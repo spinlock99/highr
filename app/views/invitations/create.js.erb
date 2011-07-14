@@ -1,0 +1,29 @@
+//
+// Remove any old flash messages.
+//
+$('.flash').remove();
+
+//
+// Add the fnew lash message.
+//
+$('header').after('<br /><div class="flash notice"><%= escape_javascript(flash.delete(:notice)) %></div>');  
+
+//
+// Hide emailbox
+//
+$('#emailbox').css('display', 'none');
+
+//
+// Change the message
+//
+$('#message').html('<h2>Check your email for your invitation.</h2>');
+
+//
+// Open the curtains
+//
+var waitTime = 2000;
+$("#content").animate({ opacity: '1.0' }, waitTime);
+$("#left").animate({ width: '25%' }, waitTime);
+$("#center-left").animate({ width: '25%' }, waitTime);
+$("#center-right").animate({ width: '25%' }, waitTime);
+$("#right").animate({ width: '25%' }, waitTime);

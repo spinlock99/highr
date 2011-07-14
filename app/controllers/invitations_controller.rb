@@ -9,6 +9,30 @@ class InvitationsController < Devise::InvitationsController
   skip_filter :authenticate!
 
   #
+  # create
+  #
+  # POST /resource/invitation                                                                                                 # 
+  # extend the base class so that we can handle an AJAX call and update the front page
+  # without re-rendering the page.
+  #
+  def create
+    self.resource = resource_class.invite!(params[resource_name], current_inviter)
+    
+    if resource.errors.empty?
+      set_flash_message :notice, :send_instructions, :email => self.resource.email
+      #
+      # respond to html and js differently
+      #
+      respond_to do |format|
+        format.html { respond_with resource, :location => redirect_location(resource_name, resource) }
+        format.js
+      end
+    else
+      respond_with_navigational(resource) { render_with_scope :new }
+    end
+  end 
+  
+  #
   # edit
   #
   # extend base-class to store the invitation token in the session

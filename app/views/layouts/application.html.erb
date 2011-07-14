@@ -4,19 +4,9 @@
     <title><%= title %></title>
     <%= csrf_meta_tag %>
     <%= render('layouts/stylesheets') %>
-    <%= javascript_include_tag :defaults %>
-    <%= javascript_include_tag 'jquery-ui' %>
-    <% if signed_in? %>
-      <%= javascript_include_tag 'signed_in' %>
-    <% else %>
-      <%= javascript_include_tag 'not_signed_in' %>
-    <% end %>
+    <%= javascript_include_tag :defaults, 'jquery-ui' %>
   </head>
   <body>
-    <div class="curtain" id="left"></div>
-    <div class="back-drop" id="center-left"></div>
-    <div class="back-drop" id="center-right"></div>
-    <div class="curtain" id="right"></div>
     <div id="container">
       <div id="content"> 
 	<%= render('layouts/header') %>

@@ -1,24 +1,9 @@
 html {
-/*    background: #000 url('/images/launch.jpg') no-repeat center center fixed; */
     color: #A0A0A0;
 }
 
 .curtain {
     background-image: url('/images/curtain3.png'), url('/images/curtain2.png'), url('/images/curtain1.jpg'); 
-/*    background-image: url('/images/curtain1.jpg'); */
-    float: left;
-    width: 50%;
-    height: 915px;
-}
-
-#right {
-    background-position: -100px, 0px;
-}
-
-.back-drop {
-    float: left;
-    width: 0%;
-    height: 915px;
 }
 
 a, a:link, a:hover, a:active {
@@ -51,9 +36,7 @@ body {
 #container {
     text-align: center;
     width: 100%;
-/*    width: 960px; */
     margin: 0 auto; 
-/*    overflow: hidden; */
     position: absolute; 
     left: 50%
     margin-left: -480px;
@@ -64,12 +47,9 @@ body {
     width: 340px;
     background: transparent url('/images/content_bg.png') 0 0 repeat;
     padding: 20px;
-/*    position: absolute; */
     position: relative;
     float: center;
-/*    left: 50%;
-    margin-left: -190px; */
-    opacity: 0.8;
+    opacity: 1.0;
     z-index: 10;
 }
 
@@ -99,7 +79,6 @@ body {
   margin-top: 10px;
   padding: 2px;
   background-color: red;
-/*  display: table; */
 }
 
 .field_with_errors label {
@@ -107,7 +86,6 @@ body {
 }
 
 #error_explanation {
-/*  width: 400px; */
   border: 2px solid red;
   padding: 7px;
   padding-bottom: 12px;
@@ -143,7 +121,6 @@ nav {
 }
 
 nav {
-#    background-color: white;
     padding: 0 0.7em;
     white-space: nowrap;
 }

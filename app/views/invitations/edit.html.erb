@@ -1,8 +1,6 @@
-<%= javascript_include_tag 'curtains' %>
-
-<h2>Set your password</h2>
-
 <%= render 'shared/sign_in_index' %>
+
+<p>or, sign in with your email and password:</p><br />
 
 <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name), :html => { :method => :put } do |f| %>
   <%= devise_error_messages! %>
