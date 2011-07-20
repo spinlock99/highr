@@ -44,7 +44,12 @@ body {
 
 #content {
     margin: 110px auto 0 auto;
-    width: 340px;
+    width: 340px; 
+/*    
+    margin: 0 auto 0 auto;
+    width: 50%;
+    height: 915px; 
+*/
     background: transparent url('/images/content_bg.png') 0 0 repeat;
     padding: 20px;
     position: relative;

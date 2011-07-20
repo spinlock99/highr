@@ -3,7 +3,7 @@ $(document).ready(function(){
 	//
 	// Show closed curtains to non-signed in users
 	//
-	$('#content').css('opacity', '0.8');
+	$('#content').css('opacity', '0.8')
 	$('#container').before('<div class="curtain" id="left"></div>' +
 			       '<div class="back-drop" id="center-left"></div>' +
 			       '<div class="back-drop" id="center-right"></div>' +

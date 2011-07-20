@@ -17,22 +17,23 @@
 
    <%= javascript_include_tag 'not_signed_in' %>
 
-   <h2>Launching soon. Enter your email to join our waiting list.</h2>
-
- <% end %><!-- end signed_in? -->
+   <h2>Launching soon.</h2>
+   <h2>Enter your email to join our waiting list.</h2>
+   
+   <% end %><!-- end signed_in? -->
 </div><!-- message -->
 <div id="emailbox">
   <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name) do |f| %>
   <%= devise_error_messages! %>
   
   <% if signed_in? %>
-    <%= f.text_field :email, :id => "email", :value => "friends@email.com" %>
+  <%= f.text_field :email, :id => "email", :value => "friends@email.com" %>
   <% else %>
-    <%= f.text_field :email, :id => "email", :value => "your@email.com" %>
+  <%= f.text_field :email, :id => "email", :value => "your@email.com" %>
   <% end %>
-    
+  
   <%= f.submit "Go" %>
   <% end %>
-
+  
   <br>
 </div><!-- emailbox -->
