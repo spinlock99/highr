@@ -31,7 +31,7 @@ class UsersController < ApplicationController
     end
     @user = User.new(params[:user])
     if @user.save
-      flash[:success] = "Welcome to highr"
+      flash[:success] = "Welcome"
       redirect_to @user
     else
       @title = "Sign up"

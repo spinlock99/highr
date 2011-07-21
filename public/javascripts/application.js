@@ -13,12 +13,8 @@ jQuery.fn.submitWithAjax = function () {
 
 // Make this available once the document is loaded
 $(document).ready(function() {
-	$("#add_team_mate").click(function() {
-		alert("Hello world!");
-		$("#team_action").html("sucka");
-		return false;
-	    });
-    });
+	$("#user_edit").submitWithAjax();
+    })
 // jquery-ui tabs magic
 $(function() {
 	$("#team_tabs").tabs();

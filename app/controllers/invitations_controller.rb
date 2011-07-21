@@ -8,10 +8,13 @@ class InvitationsController < Devise::InvitationsController
   skip_filter :authenticate_inviter!
   skip_filter :authenticate!
 
+  respond_to :html, :js
+
   #
   # create
   #
-  # POST /resource/invitation                                                                                                 # 
+  # POST /resource/invitation - becomes /users/invitation because we are creating a new user 
+  #
   # extend the base class so that we can handle an AJAX call and update the front page
   # without re-rendering the page.
   #
@@ -32,6 +35,34 @@ class InvitationsController < Devise::InvitationsController
     end
   end 
   
+  #
+  # update
+  #
+  # POST /resource/invitation
+  #
+  # extend base-class to enable js and html
+  #
+#  def update
+#    self.resource = resource_class.accept_invitation!(params[resource_name])
+#
+#    logger.debug "\n\t Sucka \n\n"
+#    
+#    if resource.errors.empty?
+#      set_flash_message :notice, :updated
+#      sign_in(resource_name, resource)
+      #
+      # respond to html and js differently
+      #
+#      respond_to do |format|
+#        format.html { respond_with resource, :location => after_accept_path_for(resource) }
+#        format.js
+#      end
+#    else
+#      respond_with_navigational(resource){ render_with_scope :edit }
+#    end
+
+#  end
+
   #
   # edit
   #

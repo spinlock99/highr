@@ -29,4 +29,8 @@ $(document).ready(function(){
 	// AJAX call to submit user_new form
 	//
 	$("#user_new").submitWithAjax();
+
+	$("#user_submit").submitWithAjax();
+
+	$("#commit").submitWithAjax();
     });

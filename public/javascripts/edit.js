@@ -9,4 +9,9 @@ $(function() {
         $('.curtain').css('float', 'left').css('width','25%').css('height','915px');
         $('.back-drop').css('float', 'left').css('width','25%').css('height','915px');
         $('#right').css('background-position','-100px','0px');
+
+	//
+	// AJAX call to submit user_submit
+	//
+	$("#user_submit").submitWithAjax();
     });
