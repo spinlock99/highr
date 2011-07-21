@@ -18,7 +18,6 @@ a:hover {
 
 body {
     overflow: hidden;
-/*    color: #A0A0A0; */
     color: #E9E9E9;
     font-family: arial, verdana, sans;
     overflow: hidden;
@@ -45,11 +44,6 @@ body {
 #content {
     margin: 110px auto 0 auto;
     width: 340px; 
-/*    
-    margin: 0 auto 0 auto;
-    width: 50%;
-    height: 915px; 
-*/
     background: transparent url('/images/content_bg.png') 0 0 repeat;
     padding: 20px;
     position: relative;
@@ -75,6 +69,10 @@ body {
 
 #content h2 {
     color: #A0A0A0; 
+}
+
+#email {
+    text-align: center;
 }
 
 .hidden {
@@ -115,8 +113,10 @@ body {
 }
 
 #error_explanation ul li {
-  font-size: 12px;
-  list-style: square;
+    margin: 7px;
+    color: red;
+    font-size: 12px;
+    list-style: square;
 }
 
 /* Navigation */
@@ -145,12 +145,3 @@ nav ul li a {
     padding: 0 5px;
     font-weight: bold;
 }
-/*
-nav ul li a:visited {
-    color: #09c;
-}
-
-nav ul li a:hover {
-    text-decoration: underline;
-}
-*/

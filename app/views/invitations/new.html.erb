@@ -5,13 +5,7 @@
 
     <h2>Skip the Line!</h2>
 
-    <p>Click &ldquo;Recommend&rdquo; and &ldquo;Tweet&rdquo; to share with your friends. 
-      You'll get credit for every referral that you create.</p>
-    <div id="fb-root"></div><div id="facebook">[Facebook]</div>
-    <br /><br />
-    <div id="twitter">[Twitter]</div>
-    <br /><br />
-    <p>Or, enter an email address below to send an invitation.</p>
+    <p>Send an invitation to a friend.</p>
 
  <% else %><!-- signed_in? == false -->
 
@@ -37,3 +31,12 @@
   
   <br>
 </div><!-- emailbox -->
+
+<% if signed_in? %>
+    <p>Or, click &ldquo;Recommend&rdquo; and &ldquo;Tweet&rdquo; to share with everyone.</p> 
+    <div id="fb-root"></div><div id="facebook">[Facebook]</div>
+<!--    <br /><br /> -->
+    <div id="twitter">[Twitter]</div>
+    <br /><br />
+    <p>You'll get credit for every referral that you create.</p>
+<% end %>
