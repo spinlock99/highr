@@ -19,7 +19,7 @@ module ApplicationHelper
 
   #Return a title on a per-page basis.
   def title
-    base_title = "HighR"
+    base_title = "Atomic Broadcast"
     if @title.nil?
       base_title
     else
