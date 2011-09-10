@@ -1,42 +1,33 @@
+<!-- app/controllers/new.html.erb -->
 <div id="message">
-  <% if signed_in? %><!-- signed_in? == true -->
-    
-    <%= javascript_include_tag 'signed_in' %>
-
-    <h2>Skip the Line!</h2>
-
-    <p>Send an invitation to a friend.</p>
-
- <% else %><!-- signed_in? == false -->
-
-   <%= javascript_include_tag 'not_signed_in' %>
-
-   <h2>Launching soon.</h2>
-   <h2>Enter your email to join our waiting list.</h2>
-   
-   <% end %><!-- end signed_in? -->
+  <% if !signed_in? %><!-- signed_in? == false -->
+  <%= javascript_include_tag 'not_signed_in' %>
+  <h2>Launching soon.</h2>
+  <p>Enter your email to join our waiting list.</p>
+  <% else %><!-- signed_in? == true -->
+  <%= javascript_include_tag 'signed_in' %>
+  <h2>Skip the Line!</h2>
+  <p>Send an invitation to a friend.</p>
+  <% end %><!-- end signed_in? -->
 </div><!-- message -->
 <div id="emailbox">
   <%= form_for resource, :as => resource_name, :url => invitation_path(resource_name) do |f| %>
   <%= devise_error_messages! %>
-  
-  <% if signed_in? %>
-  <%= f.text_field :email, :id => "email", :value => "friends@email.com" %>
-  <% else %>
+  <% if !signed_in? %><!-- signed_in? == false -->
   <%= f.text_field :email, :id => "email", :value => "your@email.com" %>
-  <% end %>
-  
+  <% else %><!-- signed_in? == true -->
+  <%= f.text_field :email, :id => "email", :value => "friends@email.com" %>
+  <% end %><!-- end signed_in? -->
   <%= f.submit "Go" %>
-  <% end %>
-  
-  <br>
+  <% end %><!-- end form_for resource -->
+  <br />
 </div><!-- emailbox -->
-
 <% if signed_in? %>
-    <p>Or, click &ldquo;Recommend&rdquo; and &ldquo;Tweet&rdquo; to share with everyone.</p> 
-    <div id="fb-root"></div><div id="facebook">[Facebook]</div>
-<!--    <br /><br /> -->
-    <div id="twitter">[Twitter]</div>
-    <br /><br />
-    <p>You'll get credit for every referral that you create.</p>
+<div id="social_network_container">
+  <p>Or, click &ldquo;Recommend&rdquo; and &ldquo;Tweet&rdquo; to share with everyone.</p> 
+  <div id="fb-root"></div><div id="facebook">[Facebook]</div>
+  <div id="twitter">[Twitter]</div>
+  <br /><br />
+  <p>You'll get credit for every referral that you create.</p>
+</div><!-- social_network_container-->
 <% end %>

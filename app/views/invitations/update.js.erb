@@ -9,26 +9,29 @@ $('#error_explanation').remove();
 // there were errors encountered by InvitationsController#create
 //
 var no_errors = <%= resource.errors.empty? %>;
-if(no_errors){
-	//
-	// Open the curtains all the way
-	//
-	var waitTime = 2000;
-	$("#left").animate({ width: '0' }, waitTime);
-	$("#center-left").animate({ width: '50%' }, waitTime);
-	$("#center-right").animate({ width: '50%' }, waitTime);
-	$("#right").animate({ width: '0' }, waitTime);
-
-	//
-	// Redirect to the root path
-	//
-	window.location = "<%= escape_javascript(root_path) %>";
-}else{
-	//
-	// We have errors to display.	
-	//
-	<% flash.each do |key, value| %>	
-	   $('header').after('<%= content_tag(:div, value, :class => "flash #{key}") %>');
-	<% end %>
-	$('header').after('<%= escape_javascript(devise_error_messages!) %>');
+if(no_errors)
+{
+    //
+    // Open the curtains all the way
+    //
+    var waitTime = 2000;
+    $("#left").animate({ width: '0' }, waitTime);
+    $("#center-left").animate({ width: '50%' }, waitTime);
+    $("#center-right").animate({ width: '50%' }, waitTime);
+    $("#right").animate({ width: '0' }, waitTime);
+    
+    //
+    // Redirect to the root path
+    //
+    window.location = "<%= escape_javascript(root_path) %>";
+    }
+else
+{
+    //
+    // We have errors to display.	
+    //
+    <% flash.each do |key, value| %>	
+      $('header').after('<%= content_tag(:div, value, :class => "flash #{key}") %>');
+    <% end %>
+    $('header').after('<%= escape_javascript(devise_error_messages!) %>');
 }
