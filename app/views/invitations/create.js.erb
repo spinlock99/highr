@@ -2,30 +2,37 @@
 // Remove any old flash messages.
 //
 $('.flash').remove();
-
+$('#error_explanation').remove();
 //
-// Add the new flash message.
+// Check error messages
 //
-$('header').after('<br /><div class="flash notice"><%= escape_javascript(flash.delete(:notice)) %></div>');  
-
-
-
-//
-// Hide emailbox
-//
-$('#emailbox').css('display', 'none');
-
-//
-// Change the message
-//
-$('#message').html('<h2>Check your email for your invitation.</h2>');
-
-//
-// Open the curtains
-//
-var waitTime = 2000;
-$("#content").animate({ opacity: '1.0' }, waitTime);
-$("#left").animate({ width: '25%' }, waitTime);
-$("#center-left").animate({ width: '25%' }, waitTime);
-$("#center-right").animate({ width: '25%' }, waitTime);
-$("#right").animate({ width: '25%' }, waitTime);
+var deviseErrorMessages = "<%= escape_javascript(devise_error_messages!) %>";
+if(deviseErrorMessages)
+{
+    //
+    // Show error message if we couldn't send the invitation.
+    //
+    $('header').after(deviseErrorMessages);
+    $('#email').wrap('<div class=field_with_errors></div>');
+    $('#email').style.color = "red";
+}
+else
+{
+    //
+    // Add the new flash message.
+    // Hide emailbox
+    // Change the message
+    // Open the curtains
+    //
+    $('header').after('<br /><div class="flash notice">' + 
+                      "<%= escape_javascript(flash.delete(:notice))%>" + 
+		      '</div>');
+    $('#emailbox').css('display', 'none');
+    $('#message').html('<h2>Check your email for your invitation.</h2>');
+    var waitTime = 2000;
+    $("#content").animate({ opacity: '1.0' }, waitTime);
+    $("#left").animate({ width: '25%' }, waitTime);
+    $("#center-left").animate({ width: '25%' }, waitTime);
+    $("#center-right").animate({ width: '25%' }, waitTime);
+    $("#right").animate({ width: '25%' }, waitTime);
+}
