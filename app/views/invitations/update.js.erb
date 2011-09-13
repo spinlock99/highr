@@ -8,8 +8,7 @@ $('#error_explanation').remove();
 // evaluate resource.errors.empty? to determine if 
 // there were errors encountered by InvitationsController#create
 //
-var no_errors = <%= resource.errors.empty? %>;
-if(no_errors)
+if(<%= resource.errors.empty? %>)
 {
     //
     // Open the curtains all the way
@@ -31,7 +30,7 @@ else
     // We have errors to display.	
     //
     <% flash.each do |key, value| %>	
-      $('header').after('<%= content_tag(:div, value, :class => "flash #{key}") %>');
+      $('header').after("<%= content_tag(:div, value, :class => 'flash #{key}') %>");
     <% end %>
-    $('header').after('<%= escape_javascript(devise_error_messages!) %>');
+    $('header').after("<%= escape_javascript(devise_error_messages!) %>");
 }

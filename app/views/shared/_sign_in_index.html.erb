@@ -1,3 +1,4 @@
+<!-- app/views/shared/_sign_in_index.html.erb -->
 <%= javascript_include_tag 'edit' %>
 
 <% if @authentications %>
@@ -9,7 +10,12 @@
 	  <%= image_tag "#{authentication.provider}_32.png", :size => "32x32"%>
 	  <div class="provider"><%= authentication.provider %></div>
 	  <div class="uid"><%= authentication.uid %></div>
-	  <%= link_to "X", authentication, :confirm => 'Are you sure you want to remove this authentication option?', :method => :delete, :class => "remove"%>
+	  <%= 
+	  link_to "X", authentication, 
+	  :confirm => 'Are you sure you want to remove this authentication option?', 
+	  :method => :delete, 
+	  :class => "remove"
+	  %>
 	</div>
       <% end %>
       <div class="clear"></div>
@@ -19,15 +25,11 @@
   <p><strong>Add another service to sign in with:</strong></p>
 <% else %>
   <div class="call_to_action">
-  <strong>
-    Sign in through one of these services:
-  </strong><br />
+  <h2>Sign in through one of these services:</h2>
 <% end %>
-
   <a href="/auth/linked_in" >
     <%= image_tag "linked_in_64.png", :size => "64x64", :alt => "LinkedIn" %>
   </a>
-
   </div>
-
 <div class="clear"></div>
+<!-- app/views/shared/_sign_in_index.html.erb -->
