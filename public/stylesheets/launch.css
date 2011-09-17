@@ -17,6 +17,7 @@ a:hover {
 
 
 body {
+    background-image: url('/images/screenshot.png');
     overflow: hidden;
     color: #E9E9E9;
     font-family: arial, verdana, sans;

@@ -38,6 +38,7 @@ document.onclick = openCurtains;
 function openCurtains() {
     var waitTime = 2000;
 
+    $("#content").animate({ opacity: '1.0' }, waitTime);
     $("#left").animate({ width: '25%' }, waitTime);
     $("#center-left").animate({ width: '25%' }, waitTime);
     $("#center-right").animate({ width: '25%' }, waitTime);
